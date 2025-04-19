@@ -26,6 +26,16 @@ flutter:
 
   uses-material-design: true
 
+  fonts:
+    - family: Mukta
+      fonts:
+        - asset: fonts/Mukta-Bold.ttf
+        - asset: fonts/Mukta-ExtraBold.ttf
+        - asset: fonts/Mukta-ExtraLight.ttf
+        - asset: fonts/Mukta-Light.ttf
+        - asset: fonts/Mukta-Medium.ttf
+        - asset: fonts/Mukta-Regular.ttf
+        - asset: fonts/Mukta-SemiBold.ttf
 
   assets:
     - assets/app_logo.png
