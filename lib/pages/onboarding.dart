@@ -90,6 +90,55 @@ class _OnboardingPage extends State<OnboardingPage> {
                         ],
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/onboarding_2.png', height: 290),
+                          const SizedBox(height: 25),
+                          Text.rich(
+                            TextSpan(
+                              text: "Unlock Your ",
+                              style: const TextStyle(
+                                fontSize: 26,
+                                color: Color(0xFF2E2E2E),
+                                fontWeight: FontWeight.w800,
+                              ),
+                              children: [
+                                const TextSpan(
+                                  text: "Skill and",
+                                  style: TextStyle(color: Color(0xFFFFC524)),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Text(
+                            "Potential",
+                            style: TextStyle(
+                              fontSize: 26,
+                              color: Color(0xFFFFC524),
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          const SizedBox(
+                            width: 330,
+                            child: Text(
+                              "Gain access to high-quality resources and develop the expertise you need to succeed.",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xFF585555),
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          const SizedBox(height: 70),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
