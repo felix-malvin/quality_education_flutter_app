@@ -23,7 +23,6 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 flutter:
-
   uses-material-design: true
 
   fonts:
@@ -39,3 +38,5 @@ flutter:
 
   assets:
     - assets/app_logo.png
+    - assets/get_started_component_1.png
+    - assets/get_started_image.png
