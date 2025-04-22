@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/widget_support/textstyle.dart';
 import 'package:quality_education_app/pages/signup.dart';
-import 'package:quality_education_app/pages/home.dart';
+import 'package:quality_education_app/widgets/layouts/main_layout.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -195,7 +195,7 @@ class _SigninPage extends State<SigninPage> {
         onPressed: () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => HomePage()),
+            MaterialPageRoute(builder: (context) => MainLayout()),
           );
         },
         style: TextButton.styleFrom(
