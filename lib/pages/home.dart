@@ -217,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                       decoration: BoxDecoration(
                         color:
                             _currentIndex == index
-                                ? Color(CustomColors.primary)
+                                ? CustomColors.primary
                                 : Color(0xFFF9F9F9),
                         borderRadius: BorderRadius.circular(4),
                       ),
@@ -228,6 +228,43 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
+      ],
+    );
+  }
+
+  Widget _buildContentHeader(String title, VoidCallback onTap) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(title, style: AppWidget.HomeSubtitle()),
+          InkWell(
+            onTap: onTap,
+            child: Text('See all', style: AppWidget.SecondaryText()),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSubjectIcon(String name, String image) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: EdgeInsets.all(10),
+          width: 60,
+          height: 60,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Color(0x89D9ECFB),
+          ),
+          child: Center(child: Image.asset(image, width: 35)),
+        ),
+        SizedBox(height: 6),
+        Text(name, style: AppWidget.SubjectName(), textAlign: TextAlign.center),
       ],
     );
   }
