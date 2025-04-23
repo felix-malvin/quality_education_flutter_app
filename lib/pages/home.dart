@@ -62,6 +62,8 @@ class _HomePageState extends State<HomePage> {
             _buildHomeHeader(),
             SizedBox(height: 20),
             _buildSearchBox(),
+            SizedBox(height: 20),
+            _buildHomeCarousel(),
           ],
         ),
       ),
@@ -147,6 +149,85 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildHomeCarousel() {
+    return Column(
+      children: [
+        Stack(
+          children: [
+            SizedBox(
+              height: 194,
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: _images.length,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  return AnimatedContainer(
+                    duration: Duration(milliseconds: 400),
+                    margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 6,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Image.asset(
+                        _images[index],
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Positioned(
+              bottom: 20,
+              left: 0,
+              right: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(_images.length, (index) {
+                  return GestureDetector(
+                    onTap: () {
+                      _pageController.animateToPage(
+                        index,
+                        duration: Duration(milliseconds: 400),
+                        curve: Curves.easeInOut,
+                      );
+                    },
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
+                      margin: EdgeInsets.symmetric(horizontal: 4),
+                      width: _currentIndex == index ? 14 : 8,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        color:
+                            _currentIndex == index
+                                ? Color(0xFF0066FF)
+                                : Color(0xFFF9F9F9),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ),
+                  );
+                }),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
