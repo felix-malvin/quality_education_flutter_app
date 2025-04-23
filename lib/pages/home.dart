@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/widget_support/textstyle.dart';
+import 'package:quality_education_app/commons/color.dart';
 import 'dart:async';
 
 class HomePage extends StatefulWidget {
@@ -53,7 +54,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF9F9F9),
+      backgroundColor: CustomColors.white,
       body: Container(
         margin: EdgeInsets.only(top: 50),
         child: Column(
@@ -85,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w800,
-                  color: Color(0xFF2E2E2E),
+                  color: CustomColors.primary,
                 ),
               ),
               SizedBox(height: 3),
@@ -94,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
-                  color: Color(0xFF2E2E2E),
+                  color: CustomColors.primary,
                 ),
               ),
             ],
@@ -216,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                       decoration: BoxDecoration(
                         color:
                             _currentIndex == index
-                                ? Color(0xFF0066FF)
+                                ? Color(Cus)
                                 : Color(0xFFF9F9F9),
                         borderRadius: BorderRadius.circular(4),
                       ),
