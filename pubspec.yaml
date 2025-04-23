@@ -46,3 +46,7 @@ flutter:
     - assets/facebook_logo.png
     - assets/google_logo.png
     - assets/avatar_logo.jpg
+    - assets/carousel_image_1.jpg
+    - assets/carousel_image_2.jpg
+    - assets/carousel_image_3.jpg
+    - assets/carousel_image_4.jpg
