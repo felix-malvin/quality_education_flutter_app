@@ -217,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                       decoration: BoxDecoration(
                         color:
                             _currentIndex == index
-                                ? Color(Cus)
+                                ? Color(CustomColors.primary)
                                 : Color(0xFFF9F9F9),
                         borderRadius: BorderRadius.circular(4),
                       ),
