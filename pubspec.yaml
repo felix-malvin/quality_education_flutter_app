@@ -50,3 +50,9 @@ flutter:
     - assets/carousel_image_2.jpg
     - assets/carousel_image_3.jpg
     - assets/carousel_image_4.jpg
+    - assets/math_logo_primary.png
+    - assets/biology_logo_primary.png
+    - assets/physics_logo_primary.png
+    - assets/chemistry_logo_primary.png
+    - assets/economy_logo_primary.png
+    - assets/geography_logo_primary.png
