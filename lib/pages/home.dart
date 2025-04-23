@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage> {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: "Search here",
-                  prefixIcon: Icon(Icons.search, color: Color(0xFF0066FF)),
+                  prefixIcon: Icon(Icons.search, color: CustomColors.primary),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide.none,
