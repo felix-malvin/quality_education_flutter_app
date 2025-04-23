@@ -65,6 +65,16 @@ class _HomePageState extends State<HomePage> {
             _buildSearchBox(),
             SizedBox(height: 20),
             _buildHomeCarousel(),
+            SizedBox(height: 20),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    _buildSubjectsContent(),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -86,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w800,
-                  color: CustomColors.primary,
+                  color: CustomColors.primaryText,
                 ),
               ),
               SizedBox(height: 3),
@@ -95,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
-                  color: CustomColors.primary,
+                  color: CustomColors.primaryText,
                 ),
               ),
             ],
@@ -296,6 +306,16 @@ class _HomePageState extends State<HomePage> {
               );
             }).toList(),
       ),
+    );
+  }
+
+  Widget _buildSubjectsContent() {
+    return Column(
+      children: [
+        _buildContentHeader('Subjects', () {}),
+        SizedBox(height: 10),
+        _buildSubjectScroll(),
+      ],
     );
   }
 }
