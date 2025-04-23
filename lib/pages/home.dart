@@ -268,4 +268,34 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+
+  Widget _buildSubjectScroll() {
+    final subjects = [
+      {'name': 'Math', 'image': 'assets/math_logo_primary.png'},
+      {'name': 'Biology', 'image': 'assets/biology_logo_primary.png'},
+      {'name': 'Physics', 'image': 'assets/physics_logo_primary.png'},
+      {'name': 'Chemistry', 'image': 'assets/chemistry_logo_primary.png'},
+      {'name': 'Economy', 'image': 'assets/economy_logo_primary.png'},
+      {'name': 'Geography', 'image': 'assets/geography_logo_primary.png'},
+    ];
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      child: Row(
+        children:
+            subjects.asMap().entries.map((entry) {
+              final index = entry.key;
+              final subject = entry.value;
+
+              return Row(
+                children: [
+                  if (index != 0) SizedBox(width: 36),
+                  _buildSubjectIcon(subject['name']!, subject['image']!),
+                ],
+              );
+            }).toList(),
+      ),
+    );
+  }
 }
