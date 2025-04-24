@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/widget_support/textstyle.dart';
 import 'package:quality_education_app/pages/popular_courses.dart';
+import 'package:quality_education_app/pages/subjects.dart';
 import 'package:quality_education_app/commons/color.dart';
 import 'dart:async';
 
@@ -316,7 +317,12 @@ class _HomePageState extends State<HomePage> {
   Widget _buildSubjectsContent() {
     return Column(
       children: [
-        _buildContentHeader('Subjects', () {}),
+        _buildContentHeader('Subjects', () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SubjectsPage()),
+          );
+        }),
         SizedBox(height: 10),
         _buildSubjectScroll(),
       ],
