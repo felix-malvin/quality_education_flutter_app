@@ -56,6 +56,13 @@ flutter:
     - assets/chemistry_logo_primary.png
     - assets/economy_logo_primary.png
     - assets/geography_logo_primary.png
+    - assets/math_logo_secondary.png
+    - assets/biology_logo_secondary.png
+    - assets/physics_logo_secondary.png
+    - assets/chemistry_logo_secondary.png
+    - assets/economy_logo_secondary.png
+    - assets/geography_logo_secondary.png
+    - assets/history_logo_secondary.png
     - assets/math_course_1.jpg
     - assets/physics_course_1.jpg
     - assets/chemistry_course_1.jpg
