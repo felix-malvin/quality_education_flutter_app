@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/widget_support/textstyle.dart';
+import 'package:quality_education_app/pages/popular_courses.dart';
 import 'package:quality_education_app/commons/color.dart';
 import 'dart:async';
 
@@ -71,6 +72,9 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     _buildSubjectsContent(),
+                    SizedBox(height: 20),
+                    _buildPopularCourseContent(),
+                    SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -319,21 +323,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildSubjectsContent() {
-    return Column(
-      children: [
-        _buildContentHeader('Subjects', () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SubjectsPage()),
-          );
-        }),
-        SizedBox(height: 10),
-        _buildSubjectScroll(),
-      ],
-    );
-  }
-
   Widget _buildCourse(
     String image,
     String courseName,
@@ -345,6 +334,14 @@ class _HomePageState extends State<HomePage> {
   ) {
     Color badge_name_color = Color(int.parse('0xFF' + badgeColor));
     Color badge_container_color = Color(int.parse('0x17' + badgeColor));
+
+    String formatRupiah(amount) {
+      String result = amount.toString().replaceAllMapped(
+        RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
+        (Match match) => '${match[1]}.',
+      );
+      return 'Rp$result';
+    }
 
     return Container(
       width: double.infinity,
@@ -411,14 +408,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => CourseDetailPage(),
-                                ),
-                              );
-                            },
+                            onTap: () {},
                             child: Icon(Icons.arrow_forward_ios, size: 25),
                           ),
                         ],
@@ -445,7 +435,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           Text(
-                            'Rp $coursePrice',
+                            formatRupiah(coursePrice),
                             style: AppWidget.CoursePrice(),
                           ),
                         ],
@@ -535,4 +525,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
