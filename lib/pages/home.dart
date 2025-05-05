@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/widget_support/textstyle.dart';
 import 'package:quality_education_app/pages/popular_courses.dart';
 import 'package:quality_education_app/pages/subjects.dart';
+import 'package:quality_education_app/pages/course_detail.dart';
+import 'package:quality_education_app/models/course_model.dart';
+import 'package:quality_education_app/data/course_data.dart';
 import 'package:quality_education_app/commons/color.dart';
 import 'dart:async';
 
@@ -56,7 +59,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.white,
+      backgroundColor: Color(0xFFF9F9F9),
       body: Container(
         margin: EdgeInsets.only(top: 50),
         child: Column(
@@ -82,44 +85,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildHomeHeader() {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 30),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Hello, Gojo Satoru',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w800,
-                  color: CustomColors.primaryText,
-                ),
-              ),
-              SizedBox(height: 3),
-              Text(
-                'Let`s start learning! 📚',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400,
-                  color: CustomColors.primaryText,
-                ),
-              ),
-            ],
-          ),
-          CircleAvatar(
-            radius: 25,
-            backgroundImage: AssetImage('assets/avatar_logo.jpg'),
-          ),
-        ],
       ),
     );
   }
@@ -163,6 +128,41 @@ class _HomePageState extends State<HomePage> {
               child: Icon(Icons.filter_list, size: 24),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHomeHeader() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Hello, Gojo Satoru',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w800,
+                  color: Color(0xFF2E2E2E),
+                ),
+              ),
+              SizedBox(height: 3),
+              Text(
+                'Let`s start learning! 📚',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF2E2E2E),
+                ),
+              ),
+            ],
+          ),
+          CircleAvatar(child: Image.asset('assets/app_logo.png')),
         ],
       ),
     );
@@ -232,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                       decoration: BoxDecoration(
                         color:
                             _currentIndex == index
-                                ? CustomColors.primary
+                                ? Color(0xFF0066FF)
                                 : Color(0xFFF9F9F9),
                         borderRadius: BorderRadius.circular(4),
                       ),
@@ -243,43 +243,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-      ],
-    );
-  }
-
-  Widget _buildContentHeader(String title, VoidCallback onTap) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 30),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(title, style: AppWidget.HomeSubtitle()),
-          InkWell(
-            onTap: onTap,
-            child: Text('See all', style: AppWidget.SecondaryText()),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSubjectIcon(String name, String image) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          padding: EdgeInsets.all(10),
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Color(0x89D9ECFB),
-          ),
-          child: Center(child: Image.asset(image, width: 35)),
-        ),
-        SizedBox(height: 6),
-        Text(name, style: AppWidget.SubjectName(), textAlign: TextAlign.center),
       ],
     );
   }
@@ -314,6 +277,43 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget _buildSubjectIcon(String name, String image) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: EdgeInsets.all(10),
+          width: 60,
+          height: 60,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Color(0x89D9ECFB),
+          ),
+          child: Center(child: Image.asset(image, width: 35)),
+        ),
+        SizedBox(height: 6),
+        Text(name, style: AppWidget.SubjectName(), textAlign: TextAlign.center),
+      ],
+    );
+  }
+
+  Widget _buildContentHeader(String title, VoidCallback onTap) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(title, style: AppWidget.HomeSubtitle()),
+          InkWell(
+            onTap: onTap,
+            child: Text('See all', style: AppWidget.SecondaryText()),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildSubjectsContent() {
     return Column(
       children: [
@@ -329,25 +329,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildCourse(
-    String image,
-    String courseName,
-    String courseDuration,
-    int courseLessons,
-    int coursePrice,
-    String badgeName,
-    String badgeColor,
-  ) {
-    Color badge_name_color = Color(int.parse('0xFF' + badgeColor));
-    Color badge_container_color = Color(int.parse('0x17' + badgeColor));
-
-    String formatRupiah(amount) {
-      String result = amount.toString().replaceAllMapped(
-        RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
-        (Match match) => '${match[1]}.',
-      );
-      return 'Rp$result';
-    }
+  Widget _buildCourse(Course course, VoidCallback onTap) {
+    Color badge_name_color = Color(
+      int.parse('0xFF' + course.badges[0].badgeColor),
+    );
+    Color badge_container_color = Color(
+      int.parse('0x17' + course.badges[0].badgeColor),
+    );
 
     return Container(
       width: double.infinity,
@@ -368,7 +356,7 @@ class _HomePageState extends State<HomePage> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Image.asset(
-                    image,
+                    course.image,
                     fit: BoxFit.cover,
                     width: double.infinity,
                   ),
@@ -388,11 +376,11 @@ class _HomePageState extends State<HomePage> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(courseName, style: AppWidget.CourseName()),
+                              Text(course.name, style: AppWidget.CourseName()),
                               Row(
                                 children: [
                                   Text(
-                                    courseDuration,
+                                    course.duration,
                                     style: AppWidget.CourseDuration(),
                                   ),
                                   SizedBox(width: 5),
@@ -406,7 +394,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    "$courseLessons lessons",
+                                    "${course.totalLessons} lessons",
                                     style: AppWidget.CourseLessons(),
                                   ),
                                 ],
@@ -414,7 +402,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: onTap,
                             child: Icon(Icons.arrow_forward_ios, size: 25),
                           ),
                         ],
@@ -435,13 +423,13 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: Center(
                               child: Text(
-                                badgeName,
+                                course.badges[0].badgeName,
                                 style: AppWidget.Badge(badge_name_color),
                               ),
                             ),
                           ),
                           Text(
-                            formatRupiah(coursePrice),
+                            'Rp ${course.price}',
                             style: AppWidget.CoursePrice(),
                           ),
                         ],
@@ -507,25 +495,24 @@ class _HomePageState extends State<HomePage> {
           );
         }),
         SizedBox(height: 10),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            children:
-                popularCourses.map((course) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: _buildCourse(
-                      course['image'] as String,
-                      course['name'] as String,
-                      course['duration'] as String,
-                      course['lessons'] as int,
-                      course['price'] as int,
-                      course['badge'] as String,
-                      course['badge_color'] as String,
-                    ),
-                  );
-                }).toList(),
-          ),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: courses.length,
+          itemBuilder: (context, index) {
+            final course = courses[index];
+            return Padding(
+              padding: EdgeInsets.only(bottom: 15, left: 30, right: 30),
+              child: _buildCourse(course, () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CourseDetailPage(),
+                  ),
+                );
+              }),
+            );
+          },
         ),
       ],
     );
