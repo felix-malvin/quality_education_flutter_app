@@ -24,6 +24,56 @@ List<Course> courses = [
       Badge(badgeName: 'Recommendation', badgeColor: '00B569'),
     ],
     lessonSections: [
+      LessonSection(
+        sectionTitle: 'Introduction',
+        duration: '45 minutes',
+        lessons: ['Introduction to Math', 'Importance of Math in Life'],
+      ),
+      LessonSection(
+        sectionTitle: 'Numbers',
+        duration: '1h 30 minutes',
+        lessons: ['Number Types', 'Basic Operations'],
+      ),
+      LessonSection(
+        sectionTitle: 'Fractions',
+        duration: '1h 30 minutes',
+        lessons: ['Understanding Fractions', 'Simplifying Fractions '],
+      ),
+      LessonSection(
+        sectionTitle: 'Decimals',
+        duration: '45 minutes',
+        lessons: ['Number Types', 'Basic Operations'],
+      ),
+      LessonSection(
+        sectionTitle: 'Algebra',
+        duration: '1h 30 minutes',
+        lessons: ['Number Types', 'Basic Operations'],
+      ),
+      LessonSection(
+        sectionTitle: 'Geometry',
+        duration: '45 minutes',
+        lessons: ['Number Types', 'Basic Operations'],
+      ),
+      LessonSection(
+        sectionTitle: 'Ratios',
+        duration: '45 minutes',
+        lessons: ['Number Types', 'Basic Operations'],
+      ),
+      LessonSection(
+        sectionTitle: 'Measurement',
+        duration: '1h 45 minutes',
+        lessons: ['Number Types', 'Basic Operations'],
+      ),
+      LessonSection(
+        sectionTitle: 'Graphs',
+        duration: '1h 13 minutes',
+        lessons: ['Number Types', 'Basic Operations'],
+      ),
+      LessonSection(
+        sectionTitle: 'Probability ',
+        duration: '45 minutes',
+        lessons: ['Number Types', 'Basic Operations'],
+      ),
     ],
   ),
 ];
