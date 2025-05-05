@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/widget_support/textstyle.dart';
 import 'package:quality_education_app/pages/signup.dart';
 import 'package:quality_education_app/widgets/layouts/main_layout.dart';
+import 'package:quality_education_app/commons/color.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -93,7 +94,7 @@ class _SigninPage extends State<SigninPage> {
                         });
                       },
                       activeColor: Color(0xFF0066FF),
-                      checkColor: Colors.white,
+                      checkColor: CustomColors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -225,7 +226,7 @@ class _SigninPage extends State<SigninPage> {
         },
         style: TextButton.styleFrom(
           backgroundColor: Color(0xFF0066FF),
-          foregroundColor: Colors.white,
+          foregroundColor: CustomColors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         ),
@@ -326,7 +327,7 @@ class _SigninPage extends State<SigninPage> {
   void _showLoginError() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.white,
+      backgroundColor: CustomColors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -356,7 +357,7 @@ class _SigninPage extends State<SigninPage> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                child: Text('Close', style: TextStyle(color: Colors.white)),
+                child: Text('Close', style: TextStyle(color: CustomColors.white)),
               ),
               SizedBox(height: 20),
             ],
