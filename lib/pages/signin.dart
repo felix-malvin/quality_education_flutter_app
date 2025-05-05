@@ -13,6 +13,9 @@ class SigninPage extends StatefulWidget {
 class _SigninPage extends State<SigninPage> {
   final FocusNode _focusUsername = FocusNode();
   final FocusNode _focusPassword = FocusNode();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   bool _isChecked = false;
 
   Color _usernameFillColor = Color(0xFFF0F1F5);
@@ -65,6 +68,7 @@ class _SigninPage extends State<SigninPage> {
               'Enter your username',
               _focusUsername,
               _usernameFillColor,
+              controller: _usernameController,
             ),
             SizedBox(height: 15),
             _buildInputField(
@@ -73,6 +77,7 @@ class _SigninPage extends State<SigninPage> {
               _focusPassword,
               _passwordFillColor,
               obscureText: true,
+              controller: _passwordController,
             ),
             SizedBox(height: 10),
             Row(
@@ -141,13 +146,20 @@ class _SigninPage extends State<SigninPage> {
     FocusNode focusNode,
     Color fillColor, {
     bool obscureText = false,
+    TextEditingController? controller,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildLabel(label),
         SizedBox(height: 5),
-        _buildInputBox(placeholder, focusNode, fillColor),
+        _buildInputBox(
+          placeholder,
+          focusNode,
+          fillColor,
+          obscureText: obscureText,
+          controller: controller,
+        ),
       ],
     );
   }
@@ -168,8 +180,10 @@ class _SigninPage extends State<SigninPage> {
     FocusNode focusNode,
     Color fillColor, {
     bool obscureText = false,
+    TextEditingController? controller,
   }) {
     return TextField(
+      controller: controller,
       focusNode: focusNode,
       obscureText: obscureText,
       decoration: InputDecoration(
@@ -193,10 +207,21 @@ class _SigninPage extends State<SigninPage> {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => MainLayout()),
-          );
+          String username = _usernameController.text.trim();
+          String password = _passwordController.text.trim();
+
+          // Simulasi akun user
+          const dummyUsername = 'admin';
+          const dummyPassword = '123456';
+
+          if (username == dummyUsername && password == dummyPassword) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => MainLayout()),
+            );
+          } else {
+            _showLoginError();
+          }
         },
         style: TextButton.styleFrom(
           backgroundColor: Color(0xFF0066FF),
@@ -269,7 +294,7 @@ class _SigninPage extends State<SigninPage> {
     );
   }
 
-  Widget _buildIconButton(String logo, String text, ) {
+  Widget _buildIconButton(String logo, String text) {
     return Expanded(
       flex: 1,
       child: TextButton(
@@ -295,6 +320,49 @@ class _SigninPage extends State<SigninPage> {
           ],
         ),
       ),
+    );
+  }
+
+  void _showLoginError() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.error_outline, size: 48, color: Colors.red),
+              SizedBox(height: 10),
+              Text(
+                'Login Failed',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              Text(
+                'The username or password you entered is incorrect. Please try again!',
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: Text('Close', style: TextStyle(color: Colors.white)),
+              ),
+              SizedBox(height: 20),
+            ],
+          ),
+        );
+      },
     );
   }
 }
