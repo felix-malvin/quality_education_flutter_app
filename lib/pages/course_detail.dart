@@ -901,7 +901,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CourseSummaryPage(),
+                          builder: (context) => CourseSummaryPage(course: widget.course),
                         ),
                       );
                     },
