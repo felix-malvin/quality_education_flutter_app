@@ -769,7 +769,17 @@ class _CourseDetailPageState extends State<CourseDetailPage>
               ),
               SizedBox(height: 20),
 
-              
+              Column(
+                children:
+                    reviews.map((review) {
+                      return _buildReviewCard(
+                        avatar: review['avatar'],
+                        name: review['name'],
+                        rating: review['rating'],
+                        comment: review['comment'],
+                      );
+                    }).toList(),
+              ),
             ],
           ),
         ),
