@@ -348,7 +348,31 @@ class _CourseDetailPageState extends State<CourseDetailPage>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
+              Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'About Course',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Color(0xFF2E2E2E),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      widget.course.description,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xFF585555),
+                        fontWeight: FontWeight.w400,
+                      ),
+                      textAlign: TextAlign.justify,
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(height: 20),
               
               SizedBox(height: 20),
