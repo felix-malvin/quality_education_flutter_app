@@ -275,6 +275,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                               controller: _tabController,
                               children: [
                                 _buildPageViewAboutSection(media),
+                                _buildPageViewLessonSection(media)
                               ],
                             ),
                           ),
@@ -450,7 +451,23 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     );
   }
 
+Widget _buildPageViewLessonSection(media) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        child: Container(
+          width: media.width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
 
+              SizedBox(height: 20),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget _buildBottomSection(media, func) {
     return Align(
