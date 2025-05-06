@@ -276,6 +276,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                               children: [
                                 _buildPageViewAboutSection(media),
                                 _buildPageViewLessonSection(media),
+                                _buildPageViewReviewSection(media)
                               ],
                             ),
                           ),
@@ -656,7 +657,36 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     );
   }
 
-Widget _buildPageViewReviewSection(media) {
+  Widget _buildPageViewReviewSection(media) {
+    final List<Map<String, dynamic>> reviews = [
+      {
+        "avatar": "assets/avatar_logo.jpg",
+        "name": "Dewi Lestari",
+        "rating": 4.5,
+        "comment": "Materi sangat jelas dan mudah dipahami. Mantap banget!",
+      },
+      {
+        "avatar": "assets/avatar_logo.jpg",
+        "name": "Andi Nugroho",
+        "rating": 5.0,
+        "comment":
+            "Pengajar sangat interaktif. Saya jadi semangat belajar lagi!",
+      },
+      {
+        "avatar": "assets/avatar_logo.jpg",
+        "name": "Sari Putri",
+        "rating": 4.0,
+        "comment":
+            "Cukup membantu, tapi ada bagian yang agak cepat penjelasannya.",
+      },
+      {
+        "avatar": "assets/avatar_logo.jpg",
+        "name": "Budi Santoso",
+        "rating": 3.5,
+        "comment": "Lumayan bagus, tapi perlu ditambah contoh kasus nyata.",
+      },
+    ];
+
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
@@ -665,85 +695,141 @@ Widget _buildPageViewReviewSection(media) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                child: Column(
+              // Header & Search
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Color(0xFF2E2E2E),
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'Mukta',
+                      ),
+                      children: [
+                        TextSpan(text: 'Reviews '),
+                        TextSpan(
+                          text: '(${widget.course.totalRatings})',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF0066FF),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height: 43,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: "Search here",
+                              prefixIcon: Icon(
+                                Icons.search,
+                                color: Color(0xFF0066FF),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide.none,
+                              ),
+                              filled: true,
+                              fillColor: Color(0xFFF0F1F5),
+                              contentPadding: EdgeInsets.only(
+                                left: 20,
+                                right: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      SizedBox(
+                        height: 43,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: IconButton.styleFrom(
+                            backgroundColor: Color(0xFF0066FF),
+                            foregroundColor: Color(0xFFF9F9F9),
+                            padding: EdgeInsets.symmetric(horizontal: 6),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: Icon(Icons.filter_list, size: 24),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+
+              
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildReviewCard({
+    required String avatar,
+    required String name,
+    required double rating,
+    required String comment,
+  }) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: Color(0xFFF9F9F9),
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: Color(0xFFE6E6E6), width: 1),
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                CircleAvatar(backgroundImage: AssetImage(avatar), radius: 24),
+                SizedBox(width: 12),
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    RichText(
-                      text: TextSpan(
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Color(0xFF2E2E2E),
-                          fontWeight: FontWeight.w700,
-                          fontFamily: 'Mukta',
-                        ),
-                        children: [
-                          TextSpan(text: 'Reviews '),
-                          TextSpan(
-                            text: '(245)',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Color(0xFF0066FF),
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'Mukta',
-                            ),
-                          ),
-                        ],
+                    Text(
+                      name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
                       ),
                     ),
-                    SizedBox(height: 5),
-                    Container(
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: SizedBox(
-                              height: 43,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  hintText: "Search here",
-                                  prefixIcon: Icon(
-                                    Icons.search,
-                                    color: Color(0xFF0066FF),
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  filled: true,
-                                  fillColor: Color(0xFFF0F1F5),
-                                  contentPadding: EdgeInsets.only(
-                                    left: 20,
-                                    right: 20,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          SizedBox(
-                            height: 43,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: IconButton.styleFrom(
-                                backgroundColor: Color(0xFF0066FF),
-                                foregroundColor: Color(0xFFF9F9F9),
-                                padding: EdgeInsets.symmetric(horizontal: 6),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                              ),
-                              child: Icon(Icons.filter_list, size: 24),
-                            ),
-                          ),
-                        ],
-                      ),
+                    Row(
+                      children: List.generate(5, (index) {
+                        return Icon(
+                          index < rating.round()
+                              ? Icons.star
+                              : Icons.star_border,
+                          color: Colors.amber,
+                          size: 16,
+                        );
+                      }),
                     ),
                   ],
                 ),
-              ),
-              SizedBox(height: 20),
-            ],
-          ),
+              ],
+            ),
+            SizedBox(height: 12),
+            Text(
+              comment,
+              style: TextStyle(fontSize: 14, color: Colors.grey[800]),
+            ),
+          ],
         ),
       ),
     );
