@@ -87,192 +87,164 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 0.7 * media.width - 60),
-                          Container(
-                            width: media.width,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFF9F9F9),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(30),
-                                topRight: Radius.circular(30),
-                              ),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const SizedBox(height: 22),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 30),
-                                      child: Container(
-                                        padding: EdgeInsets.symmetric(
-                                          vertical: 2,
-                                          horizontal: 10,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: Color(
-                                            int.parse(
-                                              '0x17' +
-                                                  widget
-                                                      .course
-                                                      .badges[0]
-                                                      .badgeColor,
-                                            ),
-                                          ),
-                                          borderRadius: BorderRadius.circular(
-                                            5,
-                                          ),
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            widget.course.badges[0].badgeName,
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              color: Color(
-                                                int.parse(
-                                                  '0xFF' +
-                                                      widget
-                                                          .course
-                                                          .badges[0]
-                                                          .badgeColor,
-                                                ),
-                                              ),
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
+                          const SizedBox(height: 22),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 30),
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 2,
+                                    horizontal: 10,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Color(
+                                      int.parse(
+                                        '0x17' +
+                                            widget.course.badges[0].badgeColor,
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8),
-                                      child: Container(
-                                        padding: EdgeInsets.symmetric(
-                                          vertical: 2,
-                                          horizontal: 10,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: Color(
-                                            int.parse(
-                                              '0x17' +
-                                                  widget
-                                                      .course
-                                                      .badges[1]
-                                                      .badgeColor,
-                                            ),
-                                          ),
-                                          borderRadius: BorderRadius.circular(
-                                            5,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      widget.course.badges[0].badgeName,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Color(
+                                          int.parse(
+                                            '0xFF' +
+                                                widget
+                                                    .course
+                                                    .badges[0]
+                                                    .badgeColor,
                                           ),
                                         ),
-                                        child: Center(
-                                          child: Text(
-                                            widget.course.badges[1].badgeName,
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              color: Color(
-                                                int.parse(
-                                                  '0xFF' +
-                                                      widget
-                                                          .course
-                                                          .badges[1]
-                                                          .badgeColor,
-                                                ),
-                                              ),
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8),
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 2,
+                                    horizontal: 10,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Color(
+                                      int.parse(
+                                        '0x17' +
+                                            widget.course.badges[1].badgeColor,
+                                      ),
+                                    ),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      widget.course.badges[1].badgeName,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Color(
+                                          int.parse(
+                                            '0xFF' +
+                                                widget
+                                                    .course
+                                                    .badges[1]
+                                                    .badgeColor,
                                           ),
                                         ),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: Text(
+                              widget.course.name,
+                              style: TextStyle(
+                                color: Color(0xFF2E2E2E),
+                                fontSize: 22,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.account_circle,
+                                      color: Color(0xFF585555),
+                                      size: 20,
+                                    ),
+                                    SizedBox(width: 3),
+                                    Text(
+                                      widget.course.tutor,
+                                      style: TextStyle(
+                                        color: Color(0xFF585555),
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w400,
                                       ),
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 20),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 30,
-                                  ),
-                                  child: Text(
-                                    widget.course.name,
-                                    style: TextStyle(
-                                      color: Color(0xFF2E2E2E),
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w800,
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.book,
+                                      color: Color(0xFF585555),
+                                      size: 20,
                                     ),
-                                  ),
+                                    SizedBox(width: 3),
+                                    Text(
+                                      '${widget.course.totalLessons} lessons',
+                                      style: TextStyle(
+                                        color: Color(0xFF585555),
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                const SizedBox(height: 8),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 30,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.account_circle,
-                                            color: Color(0xFF585555),
-                                            size: 20,
-                                          ),
-                                          SizedBox(width: 3),
-                                          Text(
-                                            widget.course.tutor,
-                                            style: TextStyle(
-                                              color: Color(0xFF585555),
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ],
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.star,
+                                      color: Color(0xFF585555),
+                                      size: 20,
+                                    ),
+                                    SizedBox(width: 3),
+                                    Text(
+                                      '${widget.course.rating} (${widget.course.totalRatings} reviews)',
+                                      style: TextStyle(
+                                        color: Color(0xFF585555),
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w400,
                                       ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.book,
-                                            color: Color(0xFF585555),
-                                            size: 20,
-                                          ),
-                                          SizedBox(width: 3),
-                                          Text(
-                                            '${widget.course.totalLessons} lessons',
-                                            style: TextStyle(
-                                              color: Color(0xFF585555),
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.star,
-                                            color: Color(0xFF585555),
-                                            size: 20,
-                                          ),
-                                          SizedBox(width: 3),
-                                          Text(
-                                            '${widget.course.rating} (${widget.course.totalRatings} reviews)',
-                                            style: TextStyle(
-                                              color: Color(0xFF585555),
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
                           ),
-                          const SizedBox(height: 15),
-                          SizedBox(
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    SizedBox(
                       height: media.height * 0.45,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -302,13 +274,10 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                             child: TabBarView(
                               controller: _tabController,
                               children: [
-                                _buildPageViewAboutSection(media)
+                                _buildPageViewAboutSection(media),
                               ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
                         ],
                       ),
                     ),
@@ -426,7 +395,53 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                 ),
               ),
               SizedBox(height: 20),
-              
+              Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Info',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Color(0xFF2E2E2E),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Row(
+                      children: [
+                        _buildInfoSectionCard(
+                          'Students',
+                          widget.course.totalStudents,
+                        ),
+                        _buildInfoSectionCard(
+                          'Language',
+                          widget.course.language,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    Row(
+                      children: [
+                        _buildInfoSectionCard(
+                          'Duration',
+                          widget.course.duration,
+                        ),
+                        _buildInfoSectionCard('Level', widget.course.language),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    Row(
+                      children: [
+                        _buildInfoSectionCard(
+                          'Certificate',
+                          widget.course.isCertificate ? 'Yes' : 'No',
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(height: 20),
             ],
           ),
