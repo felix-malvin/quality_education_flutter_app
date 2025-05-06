@@ -665,7 +665,82 @@ Widget _buildPageViewReviewSection(media) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
+              Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Color(0xFF2E2E2E),
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'Mukta',
+                        ),
+                        children: [
+                          TextSpan(text: 'Reviews '),
+                          TextSpan(
+                            text: '(245)',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF0066FF),
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'Mukta',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Container(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              height: 43,
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: "Search here",
+                                  prefixIcon: Icon(
+                                    Icons.search,
+                                    color: Color(0xFF0066FF),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  filled: true,
+                                  fillColor: Color(0xFFF0F1F5),
+                                  contentPadding: EdgeInsets.only(
+                                    left: 20,
+                                    right: 20,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          SizedBox(
+                            height: 43,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: IconButton.styleFrom(
+                                backgroundColor: Color(0xFF0066FF),
+                                foregroundColor: Color(0xFFF9F9F9),
+                                padding: EdgeInsets.symmetric(horizontal: 6),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: Icon(Icons.filter_list, size: 24),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(height: 20),
             ],
           ),
