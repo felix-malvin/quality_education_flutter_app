@@ -32,6 +32,8 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 _buildSummaryHeader(),
+                _buildSectionDivider(media),
+                _buildCourseDetailSection(),
               ],
             ),
           ),
@@ -157,7 +159,100 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
     );
   }
 
-  
+  Widget _buildSectionDivider(media) {
+    return Container(
+      width: media.width,
+      height: 7,
+      decoration: BoxDecoration(color: Color(0xFFF0F1F5)),
+    );
+  }
+
+  Widget _buildCourseDetailSection() {
+    return Container(
+      padding: EdgeInsets.only(top: 15, bottom: 20, left: 30, right: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Course Detail',
+            style: TextStyle(
+              fontSize: 18,
+              color: Color(0xFF2E2E2E),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          SizedBox(height: 6),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Language',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF2E2E2E),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              Text(
+                widget.course.language,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF2E2E2E),
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Lessons',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF2E2E2E),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              Text(
+                '${widget.course.lessonSections.length}',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF2E2E2E),
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Level',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF2E2E2E),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              Text(
+                widget.course.level,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF2E2E2E),
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+
 
   
 
