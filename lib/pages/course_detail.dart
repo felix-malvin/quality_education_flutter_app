@@ -512,6 +512,30 @@ Widget _buildPageViewLessonSection(media) {
                               ),
                             ],
                           ),
+                          const SizedBox(height: 10),
+                          ...section.lessons.asMap().entries.map((entry) {
+                            int localIndex = entry.key;
+                            String lessonTitle = entry.value;
+                            int globalLessonNumber = lessonCounter++;
+                            String lessonNumberFormatted = globalLessonNumber
+                                .toString()
+                                .padLeft(2, '0');
+
+                            return Container(
+                              margin: const EdgeInsets.only(bottom: 10),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFF9F9F9),
+                                borderRadius: BorderRadius.circular(30),
+                                border: Border.all(
+                                  color: const Color(0xFFE6E6E6),
+                                  width: 1,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 9,
+                                  horizontal: 14,
+                                ),
 
               SizedBox(height: 20),
             ],
