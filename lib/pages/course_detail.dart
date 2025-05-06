@@ -460,6 +460,58 @@ Widget _buildPageViewLessonSection(media) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Color(0xFF2E2E2E),
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'Mukta',
+                        ),
+                        children: [
+                          TextSpan(text: 'Lessons '),
+                          TextSpan(
+                            text: '(${widget.course.lessonSections.length})',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF0066FF),
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'Mukta',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ...widget.course.lessonSections.map((section) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 2),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Section - ${section.sectionTitle}',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xFF585555),
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              Text(
+                                section.duration,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xFF0066FF),
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
 
               SizedBox(height: 20),
             ],
