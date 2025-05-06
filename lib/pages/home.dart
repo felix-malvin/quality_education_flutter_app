@@ -337,6 +337,14 @@ class _HomePageState extends State<HomePage> {
       int.parse('0x17' + course.badges[0].badgeColor),
     );
 
+    String formatRupiah(amount) {
+      String result = amount.toString().replaceAllMapped(
+        RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
+        (Match match) => '${match[1]}.',
+      );
+      return 'Rp$result';
+    }
+
     return Container(
       width: double.infinity,
       height: 115,
@@ -429,7 +437,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           Text(
-                            'Rp ${course.price}',
+                            formatRupiah(course.price),
                             style: AppWidget.CoursePrice(),
                           ),
                         ],
