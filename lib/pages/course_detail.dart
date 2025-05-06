@@ -598,6 +598,8 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     );
   }
 
+  
+
   Widget _buildBottomSection(media, func) {
     return Align(
       alignment: Alignment.bottomCenter,
