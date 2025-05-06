@@ -339,6 +339,32 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     );
   }
 
+  Widget _buildInfoSectionCard(String title, String info) {
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 16,
+              color: Color(0xFF585555),
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          Text(
+            info,
+            style: TextStyle(
+              fontSize: 18,
+              color: Color(0xFF0066FF),
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildPageViewAboutSection(media) {
     return SingleChildScrollView(
       child: Padding(
@@ -408,6 +434,8 @@ class _CourseDetailPageState extends State<CourseDetailPage>
       ),
     );
   }
+
+
 
   Widget _buildBottomSection(media, func) {
     return Align(
