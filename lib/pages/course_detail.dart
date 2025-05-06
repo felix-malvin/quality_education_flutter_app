@@ -31,6 +31,15 @@ class _CourseDetailPageState extends State<CourseDetailPage>
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
+
+    String formatRupiah(int amount) {
+      String result = amount.toString().replaceAllMapped(
+        RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
+        (Match match) => '${match[1]}.',
+      );
+      return 'Rp$result';
+    }
+
     return Scaffold(
       backgroundColor: Color(0xFFF9F9F9),
       body: Stack(
@@ -86,13 +95,13 @@ class _CourseDetailPageState extends State<CourseDetailPage>
               ],
             ),
           ),
-          _buildBottomSection(media),
+          _buildBottomSection(media, formatRupiah),
         ],
       ),
     );
   }
 
-  Widget _buildBottomSection(media) {
+  Widget _buildBottomSection(media, func) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -133,7 +142,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                     ),
                     SizedBox(height: 1),
                     Text(
-                      'Rp 160.000',
+                      func(widget.course.price),
                       style: TextStyle(
                         fontSize: 18,
                         color: Color(0xFF0066FF),
