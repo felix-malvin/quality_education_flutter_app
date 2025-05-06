@@ -34,6 +34,8 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
                 _buildSummaryHeader(),
                 _buildSectionDivider(media),
                 _buildCourseDetailSection(),
+                _buildSectionDivider(media),
+                _buildPriceSummarySection(),
               ],
             ),
           ),
@@ -252,7 +254,68 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
     );
   }
 
-
+  Widget _buildPriceSummarySection() {
+    return Container(
+      padding: EdgeInsets.only(top: 15, bottom: 20, left: 30, right: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Price Summary',
+            style: TextStyle(
+              fontSize: 18,
+              color: Color(0xFF2E2E2E),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          SizedBox(height: 6),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Amount',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF2E2E2E),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              Text(
+                '${widget.course.price}',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF2E2E2E),
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Tax (11%)',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF2E2E2E),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              Text(
+                '${widget.course.price * 0.11}',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF2E2E2E),
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
   
 
