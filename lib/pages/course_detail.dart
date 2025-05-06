@@ -275,7 +275,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                               controller: _tabController,
                               children: [
                                 _buildPageViewAboutSection(media),
-                                _buildPageViewLessonSection(media)
+                                _buildPageViewLessonSection(media),
                               ],
                             ),
                           ),
@@ -451,7 +451,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     );
   }
 
-Widget _buildPageViewLessonSection(media) {
+  Widget _buildPageViewLessonSection(media) {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
@@ -536,7 +536,60 @@ Widget _buildPageViewLessonSection(media) {
                                   vertical: 9,
                                   horizontal: 14,
                                 ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          width: 40,
+                                          height: 40,
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Color(0x89D9ECFB),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              lessonNumberFormatted,
+                                              style: const TextStyle(
+                                                color: Color(0xFF0066FF),
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 15),
+                                        Text(
+                                          lessonTitle,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                            color: Color(0xFF585555),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const Icon(
+                                      Icons.play_circle,
+                                      size: 30,
+                                      color: Color(0xFF0066FF),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                          SizedBox(height: 20),
+                        ],
+                      );
+                    }).toList(),
 
+                    SizedBox(height: 20),
+                  ],
+                ),
+              ),
               SizedBox(height: 20),
             ],
           ),
