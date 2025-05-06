@@ -287,6 +287,64 @@ class _CourseDetailPageState extends State<CourseDetailPage>
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Column(
+              children: [
+                const SizedBox(height: 35),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () => Navigator.pop(context),
+                        child: Container(
+                          width: 42,
+                          height: 42,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Color(0xFFF9F9F9),
+                          ),
+                          child: IconButton(
+                            onPressed: () => Navigator.pop(context),
+                            icon: const Icon(
+                              Icons.arrow_back,
+                              size: 18,
+                              color: Color(0xFF2E2E2E),
+                            ),
+                            padding: EdgeInsets.zero,
+                            constraints: const BoxConstraints(),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          width: 42,
+                          height: 42,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Color(0xFFF9F9F9),
+                          ),
+                          child: IconButton(
+                            onPressed: () => Navigator.pop(context),
+                            icon: const Icon(
+                              Icons.share,
+                              size: 18,
+                              color: Color(0xFF2E2E2E),
+                            ),
+                            padding: EdgeInsets.zero,
+                            constraints: const BoxConstraints(),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
           _buildBottomSection(media, formatRupiah),
         ],
       ),
@@ -598,7 +656,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     );
   }
 
-  
+
 
   Widget _buildBottomSection(media, func) {
     return Align(
