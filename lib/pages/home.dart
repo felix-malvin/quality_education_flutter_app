@@ -446,45 +446,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildPopularCourseContent() {
-    final popularCourses = [
-      {
-        'name': 'Mastering Math',
-        'image': 'assets/math_course_1.jpg',
-        'duration': '20h 10m',
-        'lessons': 30,
-        'price': 160000,
-        'badge': 'Best seller',
-        'badge_color': 'FFC524',
-      },
-      {
-        'name': 'Physics for Beginner',
-        'image': 'assets/physics_course_1.jpg',
-        'duration': '15h 45m',
-        'lessons': 25,
-        'price': 125000,
-        'badge': 'Beginner Friendly',
-        'badge_color': '2196F3',
-      },
-      {
-        'name': 'Advance Chemistry',
-        'image': 'assets/chemistry_course_1.jpg',
-        'duration': '20h 10m',
-        'lessons': 40,
-        'price': 250000,
-        'badge': 'Expert Choice',
-        'badge_color': '9C27B0',
-      },
-      {
-        'name': 'Cell to System',
-        'image': 'assets/biology_course_1.jpg',
-        'duration': '09h 45m',
-        'lessons': 22,
-        'price': 169000,
-        'badge': 'New Arrival',
-        'badge_color': '00BCD4',
-      },
-    ];
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -507,7 +468,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CourseDetailPage(),
+                    builder: (context) => CourseDetailPage(course: course,),
                   ),
                 );
               }),
