@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:quality_education_app/models/payment_method_model.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar.dart';
 import 'package:quality_education_app/models/course_model.dart';
-
+import 'package:quality_education_app/pages/payment_methods.dart';
 import 'package:quality_education_app/pages/congratulations.dart';
 import 'package:quality_education_app/data/enrolled_course_data.dart';
 import 'package:quality_education_app/models/enrolled_course_model.dart';
@@ -22,6 +22,22 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
 
+    void _navigateAndSelectMethod() async {
+      final result = await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder:
+              (context) => PaymentMethodPage(selectedMethod: selectedMethod),
+        ),
+      );
+
+      if (result != null && result is PaymentMethod) {
+        setState(() {
+          selectedMethod = result;
+        });
+      }
+    }
+
     return Scaffold(
       backgroundColor: Color(0xFFF9F9F9),
       appBar: CustomAppBar(title: 'Course Summary'),
@@ -36,6 +52,10 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
                 _buildCourseDetailSection(),
                 _buildSectionDivider(media),
                 _buildPriceSummarySection(),
+                _buildPaymentDetailSection(
+                  selectedMethod,
+                  _navigateAndSelectMethod,
+                ),
               ],
             ),
           ),
@@ -317,8 +337,155 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
     );
   }
 
-  
+  Widget _buildPaymentDetailSection(selectedMethod, method) {
+    return Container(
+      padding: EdgeInsets.only(top: 15, bottom: 20, left: 30, right: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Payment Detail',
+            style: TextStyle(
+              fontSize: 18,
+              color: Color(0xFF2E2E2E),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          SizedBox(height: 6),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Image.asset(selectedMethod.imagePath, width: 30),
+                  SizedBox(width: 15),
+                  Text(
+                    selectedMethod.name,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: CustomColors.secondaryText,
+                    ),
+                  ),
+                ],
+              ),
+              GestureDetector(
+                onTap: method,
+                child: Text(
+                  "Change",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Color(0xFF0066FF),
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
+  Widget _buildFinalPriceSection(media) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        width: media.width,
+        height: 0.12 * media.height,
+        decoration: BoxDecoration(
+          color: Color(0xFFF9F9F9),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 12,
+              offset: const Offset(0, -6), // Shadow ke atas
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Final price',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Color(0xFF2E2E2E),
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(height: 1),
+                    Text(
+                      'Rp 160.000',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color(0xFF0066FF),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      enrolledCourses.add(
+                        EnrolledCourse(
+                          id: DateTime.now().millisecondsSinceEpoch.toString(),
+                          enrolledAt: DateTime.now(),
+                          paymentMethod: selectedMethod.name,
+                          progress: 0,
+                          enrolledCourse: widget.course,
+                        ),
+                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CongratulationsPage(),
+                        ),
+                      );
+                      print(enrolledCourses);
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: Color(0xFF0066FF),
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 35,
+                        vertical: 15,
+                      ),
+                    ),
+                    child: Text(
+                      "Confirm",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color(0xFFF9F9F9),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+          ],
+        ),
+      ),
+    );
+  }
   
 
   
