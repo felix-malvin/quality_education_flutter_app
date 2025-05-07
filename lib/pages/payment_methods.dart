@@ -28,6 +28,11 @@ class _PaymentMethodPage extends State<PaymentMethodPage> {
     ),
   ];
 
+  final List VirtualAccount = [
+    PaymentMethod(name: "BCA", imagePath: "assets/bca_logo.png"),
+    PaymentMethod(name: "BRI", imagePath: "assets/bri_logo.png"),
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -51,6 +56,8 @@ class _PaymentMethodPage extends State<PaymentMethodPage> {
           _buildEMoneyPaymentSection(),
           SizedBox(height: 15),
           _buildCreditCardPaymentSection(),
+          SizedBox(height: 15),
+          _buildVirtualAccountPaymentSection(),
         ],
       ),
     );
@@ -216,4 +223,83 @@ class _PaymentMethodPage extends State<PaymentMethodPage> {
     );
   }
 
+  Widget _buildVirtualAccountPaymentSection() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Virtual Account',
+            style: TextStyle(
+              fontSize: 20,
+              color: Color(0xFF2E2E2E),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          SizedBox(height: 8),
+          Container(
+            decoration: BoxDecoration(
+              color: CustomColors.white,
+              border: Border.all(color: Color(0xFFE6E6E6)),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              children: List.generate(VirtualAccount.length, (index) {
+                final method = VirtualAccount[index];
+                final isLast = index == VirtualAccount.length - 1;
+
+                return Container(
+                  decoration: BoxDecoration(
+                    border:
+                        isLast
+                            ? null
+                            : Border(
+                              bottom: BorderSide(color: Color(0xFFE6E6E6)),
+                            ),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 3,
+                      horizontal: 10,
+                    ),
+                    leading: Image.asset(method.imagePath, width: 30),
+                    title: Text(
+                      method.name,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: CustomColors.secondaryText,
+                      ),
+                    ),
+                    trailing: Transform.scale(
+                      scale: 1.5,
+                      child: Radio<PaymentMethod>(
+                        value: method,
+                        groupValue: _selected,
+                        onChanged: (PaymentMethod? value) {
+                          if (value != null) {
+                            setState(() {
+                              _selected = value;
+                            });
+                            Navigator.pop(context, value);
+                          }
+                        },
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        _selected = method;
+                      });
+                      Navigator.pop(context, method);
+                    },
+                  ),
+                );
+              }),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
