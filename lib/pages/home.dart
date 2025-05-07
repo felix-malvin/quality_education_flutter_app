@@ -4,6 +4,7 @@ import 'package:quality_education_app/pages/popular_courses.dart';
 import 'package:quality_education_app/pages/subjects.dart';
 import 'package:quality_education_app/pages/course_detail.dart';
 import 'package:quality_education_app/models/course_model.dart';
+import 'package:quality_education_app/pages/search.dart';
 import 'package:quality_education_app/data/course_data.dart';
 import 'package:quality_education_app/commons/color.dart';
 import 'dart:async';
@@ -95,19 +96,32 @@ class _HomePageState extends State<HomePage> {
       child: Row(
         children: [
           Expanded(
-            child: SizedBox(
-              height: 43,
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: "Search here",
-                  prefixIcon: Icon(Icons.search, color: CustomColors.primary),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide.none,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SearchPage()),
+                );
+              },
+              child: AbsorbPointer(
+                child: SizedBox(
+                  height: 43,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: "Search here",
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: CustomColors.primary,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide.none,
+                      ),
+                      filled: true,
+                      fillColor: Color(0xFFF0F1F5),
+                      contentPadding: EdgeInsets.only(left: 20, right: 20),
+                    ),
                   ),
-                  filled: true,
-                  fillColor: Color(0xFFF0F1F5),
-                  contentPadding: EdgeInsets.only(left: 20, right: 20),
                 ),
               ),
             ),
@@ -476,7 +490,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CourseDetailPage(course: course,),
+                    builder: (context) => CourseDetailPage(course: course),
                   ),
                 );
               }),
