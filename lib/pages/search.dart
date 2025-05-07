@@ -8,7 +8,11 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPage extends State<SearchPage> {
-  
+  String _selectedRating = 'All';
+  String _selectedPrice = 'All';
+
+  final List<String> ratingFilters = ['All', '5★', '4★ & up', '3★ & up'];
+  final List<String> priceFilters = ['All', 'Low to High', 'High to Low'];
 
   @override
   Widget build(BuildContext context) {
