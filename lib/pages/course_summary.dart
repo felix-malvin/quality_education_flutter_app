@@ -22,10 +22,11 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
     name: "OVO",
     imagePath: "assets/ovo_logo.png",
   );
-  
+
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
+    var finalPrice = (1.11 * widget.course.price).toInt();
 
     void _navigateAndSelectMethod() async {
       final result = await Navigator.push(
@@ -64,6 +65,7 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
               ],
             ),
           ),
+          _buildFinalPriceSection(media, finalPrice),
         ],
       ),
     );
@@ -392,7 +394,15 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
     );
   }
 
-  Widget _buildFinalPriceSection(media) {
+  Widget _buildFinalPriceSection(media, finalPrice) {
+    String formatRupiah(amount) {
+      String result = amount.toString().replaceAllMapped(
+        RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
+        (Match match) => '${match[1]}.',
+      );
+      return 'Rp$result';
+    }
+
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -433,7 +443,7 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
                     ),
                     SizedBox(height: 1),
                     Text(
-                      'Rp 160.000',
+                      formatRupiah(finalPrice),
                       style: TextStyle(
                         fontSize: 18,
                         color: Color(0xFF0066FF),
