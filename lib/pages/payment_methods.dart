@@ -21,6 +21,13 @@ class _PaymentMethodPage extends State<PaymentMethodPage> {
     PaymentMethod(name: "ShopeePay", imagePath: "assets/shopee_pay_logo.png"),
   ];
 
+  final List CreditCard = [
+    PaymentMethod(
+      name: "Credit Card",
+      imagePath: "assets/credit_card_logo.png",
+    ),
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -42,6 +49,8 @@ class _PaymentMethodPage extends State<PaymentMethodPage> {
         children: [
           SizedBox(height: 10),
           _buildEMoneyPaymentSection(),
+          SizedBox(height: 15),
+          _buildCreditCardPaymentSection(),
         ],
       ),
     );
@@ -72,6 +81,86 @@ class _PaymentMethodPage extends State<PaymentMethodPage> {
               children: List.generate(EMoney.length, (index) {
                 final method = EMoney[index];
                 final isLast = index == EMoney.length - 1;
+
+                return Container(
+                  decoration: BoxDecoration(
+                    border:
+                        isLast
+                            ? null
+                            : Border(
+                              bottom: BorderSide(color: Color(0xFFE6E6E6)),
+                            ),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 3,
+                      horizontal: 10,
+                    ),
+                    leading: Image.asset(method.imagePath, width: 30),
+                    title: Text(
+                      method.name,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: CustomColors.secondaryText,
+                      ),
+                    ),
+                    trailing: Transform.scale(
+                      scale: 1.5,
+                      child: Radio<PaymentMethod>(
+                        value: method,
+                        groupValue: _selected,
+                        onChanged: (PaymentMethod? value) {
+                          if (value != null) {
+                            setState(() {
+                              _selected = value;
+                            });
+                            Navigator.pop(context, value);
+                          }
+                        },
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        _selected = method;
+                      });
+                      Navigator.pop(context, method);
+                    },
+                  ),
+                );
+              }),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCreditCardPaymentSection() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Credit Card',
+            style: TextStyle(
+              fontSize: 20,
+              color: Color(0xFF2E2E2E),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          SizedBox(height: 8),
+          Container(
+            decoration: BoxDecoration(
+              color: CustomColors.white,
+              border: Border.all(color: Color(0xFFE6E6E6)),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              children: List.generate(CreditCard.length, (index) {
+                final method = CreditCard[index];
+                final isLast = index == CreditCard.length - 1;
 
                 return Container(
                   decoration: BoxDecoration(
