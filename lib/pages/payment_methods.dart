@@ -31,6 +31,8 @@ class _PaymentMethodPage extends State<PaymentMethodPage> {
   final List VirtualAccount = [
     PaymentMethod(name: "BCA", imagePath: "assets/bca_logo.png"),
     PaymentMethod(name: "BRI", imagePath: "assets/bri_logo.png"),
+    PaymentMethod(name: "Mandiri", imagePath: "assets/mandiri_logo.png"),
+    PaymentMethod(name: "BNI", imagePath: "assets/bni_logo.png"),
   ];
 
   @override
