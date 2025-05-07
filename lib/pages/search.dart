@@ -30,7 +30,7 @@ class _SearchPage extends State<SearchPage> {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
-            
+            _buildChipsSection(),
             SizedBox(height: 20),
             Expanded(child: _buildSearchResultsPlaceholder()),
           ],
@@ -77,7 +77,13 @@ class _SearchPage extends State<SearchPage> {
     );
   }
 
-
+  Widget _buildChipsSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+              ],
+    );
+  }
 
   Widget _buildSearchResultsPlaceholder() {
     return Center(
