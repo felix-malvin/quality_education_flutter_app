@@ -81,7 +81,50 @@ class _SearchPage extends State<SearchPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-              ],
+        Row(
+          children: const [
+            Icon(Icons.star_rate, size: 20, color: Color(0xFF0066FF)),
+            SizedBox(width: 6),
+            Text(
+              "Rating",
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children:
+              ratingFilters.map((rating) {
+                final isSelected = _selectedRating == rating;
+                return ChoiceChip(
+                  label: Text(rating),
+                  selected: isSelected,
+                  onSelected: (_) {
+                    setState(() {
+                      _selectedRating = rating;
+                    });
+                  },
+                  selectedColor: const Color(0xFF0066FF),
+                  backgroundColor: const Color(0xFFEFEFEF),
+                  labelStyle: TextStyle(
+                    color: isSelected ? Colors.white : Colors.black87,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(
+                      color:
+                          isSelected
+                              ? Colors.transparent
+                              : Colors.grey.shade300,
+                    ),
+                  ),
+                );
+              }).toList(),
+        ),
+      ],
     );
   }
 
