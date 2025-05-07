@@ -17,18 +17,20 @@ class _PaymentMethodPage extends State<PaymentMethodPage> {
   final List EMoney = [
     PaymentMethod(name: "OVO", imagePath: "assets/ovo_logo.png"),
     PaymentMethod(name: "Gopay", imagePath: "assets/gopay_logo.png"),
+    PaymentMethod(name: "Dana", imagePath: "assets/dana_logo.png"),
+    PaymentMethod(name: "ShopeePay", imagePath: "assets/shopee_pay_logo.png"),
   ];
-
-  void _selectMethod(PaymentMethod method) {
-    setState(() {
-      _selected = method;
-    });
-  }
 
   @override
   void initState() {
     super.initState();
     _selected = widget.selectedMethod;
+  }
+
+  void _selectMethod(PaymentMethod method) {
+    setState(() {
+      _selected = method;
+    });
   }
 
   @override
