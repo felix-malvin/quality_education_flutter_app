@@ -19,16 +19,16 @@ class _PaymentMethodPage extends State<PaymentMethodPage> {
     PaymentMethod(name: "Gopay", imagePath: "assets/gopay_logo.png"),
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    _selected = widget.selectedMethod;
-  }
-
   void _selectMethod(PaymentMethod method) {
     setState(() {
       _selected = method;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _selected = widget.selectedMethod;
   }
 
   @override
