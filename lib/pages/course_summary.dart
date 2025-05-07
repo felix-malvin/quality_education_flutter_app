@@ -18,6 +18,11 @@ class CourseSummaryPage extends StatefulWidget {
 }
 
 class _CourseSummaryPage extends State<CourseSummaryPage> {
+  PaymentMethod selectedMethod = PaymentMethod(
+    name: "OVO",
+    imagePath: "assets/ovo_logo.png",
+  );
+  
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
