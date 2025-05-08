@@ -3,6 +3,7 @@ import 'package:quality_education_app/widgets/appbar/custom_appbar2.dart';
 import 'package:quality_education_app/widgets/components/ongoing_course_card.dart';
 import 'package:quality_education_app/data/enrolled_course_data.dart';
 import 'package:quality_education_app/models/enrolled_course_model.dart';
+import 'package:quality_education_app/widgets/components/complete_course_card.dart';
 
 class MyCoursePage extends StatefulWidget {
   const MyCoursePage({super.key});
@@ -111,7 +112,33 @@ class _MyCoursePage extends State<MyCoursePage>
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                   child: Column(children: [
-  
+                      CompletedCourseCard(
+                        image: 'assets/math_course_1.jpg',
+                        courseName: 'Mastering Math',
+                        courseTutor: 'Budi Hartono',
+                        courseLessons: 30,
+                        courseCategory: 'Math',
+                        baseColor: 'FFC524',
+                      ),
+                      SizedBox(height: 15),
+                      CompletedCourseCard(
+                        image: 'assets/physics_course_1.jpg',
+                        courseName: 'Physics for Beginner',
+                        courseTutor: 'Victor Dorian',
+                        courseLessons: 25,
+                        courseCategory: 'Physics',
+                        baseColor: '0A192F',
+                      ),
+                      SizedBox(height: 15),
+                      CompletedCourseCard(
+                        image: 'assets/chemistry_course_1.jpg',
+                        courseName: 'Advance Chemistry',
+                        courseTutor: 'James Manny',
+                        courseLessons: 25,
+                        courseCategory: 'Chemistry',
+                        baseColor: '800000',
+                      ),
+                      SizedBox(height: 15),
                     ],
                   ),
                 ),
