@@ -53,7 +53,10 @@ class _LessonsPage extends State<LessonsPage>
                   tabs: const [
                     Tab(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 2,
+                          vertical: 4,
+                        ),
                         child: Text(
                           "Lessons",
                           style: TextStyle(
@@ -66,7 +69,10 @@ class _LessonsPage extends State<LessonsPage>
                     ),
                     Tab(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 2,
+                          vertical: 4,
+                        ),
                         child: Text(
                           "Certificate",
                           style: TextStyle(
@@ -85,17 +91,42 @@ class _LessonsPage extends State<LessonsPage>
                   controller: _tabController,
                   children: [
                     _buildPageViewLessonSection(media),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                      child: Center(child: Text('Certificate Page')),
-                    ),
+                    _buildUnderDevelopmentPage()
                   ],
                 ),
               ),
             ],
           ),
-          _buildBottomSection(media)
+          _buildBottomSection(media),
         ],
+      ),
+    );
+  }
+
+  Widget _buildUnderDevelopmentPage() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.construction, size: 64, color: Colors.grey),
+            SizedBox(height: 16),
+            Text(
+              'This page is under development',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                color: CustomColors.primaryText,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Please check back later.',
+              style: TextStyle(fontSize: 16, color: CustomColors.secondaryText),
+            ),
+          ],
+        ),
       ),
     );
   }
