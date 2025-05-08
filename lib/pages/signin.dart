@@ -212,8 +212,8 @@ class _SigninPage extends State<SigninPage> {
           String password = _passwordController.text.trim();
 
           // Simulasi akun user
-          const dummyUsername = 'quality';
-          const dummyPassword = 'education';
+          const dummyUsername = '1';
+          const dummyPassword = '1';
 
           if (username == dummyUsername && password == dummyPassword) {
             Navigator.pushReplacement(
