@@ -109,7 +109,7 @@ class _OngoingCourseCardState extends State<OngoingCourseCard> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => LessonsPage(),
+                                      builder: (context) => LessonsPage(course: widget.course),
                                     ),
                                   );
                                 },
