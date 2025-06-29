@@ -39,6 +39,42 @@ class _ReceiptPage extends State<ReceiptPage> {
     );
   }
 
+  Widget _buildLessonSummarySection() {
+    String formatCustomDateTime(DateTime dateTime) {
+      final datePart = DateFormat(
+        'd MMMM yyyy',
+      ).format(dateTime); // contoh: 23 March 2025
+      final timePart = DateFormat(
+        'HH:mm:ss',
+      ).format(dateTime); // contoh: 12:23:11
+      return '$datePart | $timePart';
+    }
+
+    return Container(
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Column(
+          children: [
+            _buildRowContent('Transaction ID', widget.course.id),
+            _buildRowContent(
+              'Purchase Date',
+              formatCustomDateTime(widget.course.enrolledAt),
+            ),
+            _buildRowContent('Language', widget.course.enrolledCourse.language),
+            _buildRowContent(
+              'Lesson',
+              widget.course.enrolledCourse.lessonSections.length.toString(),
+            ),
+            _buildRowContent('Level', widget.course.enrolledCourse.level),
+            SizedBox(height: 13),
+            Divider(height: 3, color: Color(0xFFF0F1F5)),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildPriceDetailSection() {
     String formatRupiah(amount) {
       String result = amount.toString().replaceAllMapped(
