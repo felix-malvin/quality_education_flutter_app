@@ -341,42 +341,43 @@ class _SigninPage extends State<SigninPage> {
               SizedBox(height: 10),
               Text(
                 'Login Failed',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: CustomColors.primaryText,
+                ),
               ),
               SizedBox(height: 8),
               Text(
                 'The username or password you entered is incorrect. Please try again!',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 16, color: CustomColors.primaryText),
               ),
               SizedBox(height: 20),
               SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () { 
-                        Navigator.pop(context);
-                      },
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.red,
-                        foregroundColor: CustomColors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 35,
-                          vertical: 15,
-                        ),
-                      ),
-                      child: Text(
-                        "Close",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xFFF9F9F9),
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    foregroundColor: CustomColors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+                  ),
+                  child: Text(
+                    "Close",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Color(0xFFF9F9F9),
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
+                ),
+              ),
               SizedBox(height: 20),
             ],
           ),
