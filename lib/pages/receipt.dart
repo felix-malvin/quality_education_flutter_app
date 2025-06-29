@@ -69,6 +69,22 @@ class _ReceiptPage extends State<ReceiptPage> {
     );
   }
 
+  Widget _buildPaymentDetailSection() {
+    return Container(
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Column(
+          children: [
+            SizedBox(height: 5),
+            _buildRowContent('Payment Method', widget.course.paymentMethod),
+            _buildRowContent('Payment Status', 'Paid'),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildRowContent(String title, content) {
     return Column(
       children: [
