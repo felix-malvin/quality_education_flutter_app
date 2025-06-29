@@ -6,7 +6,6 @@ class Course {
   final String category;
   final String categoryBaseColor;
   final String duration;
-  final int totalLessons;
   final String tutor;
   final double price;
   final String level;
@@ -25,7 +24,6 @@ class Course {
     required this.category,
     required this.categoryBaseColor,
     required this.duration,
-    required this.totalLessons,
     required this.tutor,
     required this.price,
     required this.level,
