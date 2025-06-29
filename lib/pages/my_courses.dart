@@ -100,7 +100,7 @@ class _MyCoursePage extends State<MyCoursePage>
                             courseName: enrolled.enrolledCourse.name,
                             courseTutor: enrolled.enrolledCourse.tutor,
                             courseCategory: enrolled.enrolledCourse.category,
-                            courseLessons: enrolled.enrolledCourse.totalLessons,
+                            courseLessons: enrolled.enrolledCourse.lessonSections.length,
                             baseColor:
                                 enrolled.enrolledCourse.categoryBaseColor,
                             progress: 0,
