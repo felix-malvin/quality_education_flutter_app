@@ -347,6 +347,7 @@ class _SigninPage extends State<SigninPage> {
               Text(
                 'The username or password you entered is incorrect. Please try again!',
                 textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 20),
               ElevatedButton(
