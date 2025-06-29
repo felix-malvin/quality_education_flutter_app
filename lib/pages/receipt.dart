@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar3.dart';
 import 'package:quality_education_app/models/enrolled_course_model.dart';
 import 'package:quality_education_app/commons/color.dart';
+import 'package:quality_education_app/widgets/components/barcode_generator.dart';
 import 'package:intl/intl.dart';
 
 class ReceiptPage extends StatefulWidget {
@@ -26,7 +27,7 @@ class _ReceiptPage extends State<ReceiptPage> {
           Column(
             children: [
               SizedBox(height: 15),
-
+              BarcodeWidget(data: widget.course.id),
               SizedBox(height: 15),
               _buildLessonSummarySection(),
               _buildPriceDetailSection(),
