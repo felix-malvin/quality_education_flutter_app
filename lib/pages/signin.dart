@@ -350,16 +350,33 @@ class _SigninPage extends State<SigninPage> {
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+              SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () { 
+                        Navigator.pop(context);
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        foregroundColor: CustomColors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 35,
+                          vertical: 15,
+                        ),
+                      ),
+                      child: Text(
+                        "Close",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFFF9F9F9),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                child: Text('Close', style: TextStyle(color: CustomColors.white)),
-              ),
               SizedBox(height: 20),
             ],
           ),
