@@ -210,7 +210,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                                     ),
                                     SizedBox(width: 3),
                                     Text(
-                                      '${widget.course.totalLessons} lessons',
+                                      "${widget.course.lessonSections.length} lessons",
                                       style: TextStyle(
                                         color: Color(0xFF585555),
                                         fontSize: 13,
