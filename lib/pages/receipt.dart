@@ -38,6 +38,37 @@ class _ReceiptPage extends State<ReceiptPage> {
     );
   }
 
+  Widget _buildPriceDetailSection() {
+    String formatRupiah(amount) {
+      String result = amount.toString().replaceAllMapped(
+        RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
+        (Match match) => '${match[1]}.',
+      );
+      return 'Rp$result';
+    }
+
+    var price = widget.course.enrolledCourse.price;
+    var tax = 0.11 * price;
+    var final_price = price + tax;
+
+    return Container(
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Column(
+          children: [
+            SizedBox(height: 5),
+            _buildRowContent('Amount', formatRupiah(price)),
+            _buildRowContent('Tax (11%)', formatRupiah(tax)),
+            _buildRowContent('Total', formatRupiah(final_price)),
+            SizedBox(height: 13),
+            Divider(height: 3, color: Color(0xFFF0F1F5)),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildRowContent(String title, content) {
     return Column(
       children: [
