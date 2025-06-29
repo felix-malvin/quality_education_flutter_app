@@ -467,7 +467,7 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CongratulationsPage(),
+                          builder: (context) => CongratulationsPage(course: enrolledCourse),
                         ),
                       );
                       print(enrolledCourses);
