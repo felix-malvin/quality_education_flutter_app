@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:quality_education_app/data/enrolled_course_data.dart';
+import 'package:quality_education_app/pages/receipt.dart';
 import 'package:quality_education_app/commons/color.dart';
 import 'package:quality_education_app/widgets/layouts/main_layout.dart';
+import 'package:quality_education_app/models/enrolled_course_model.dart';
 
 class CongratulationsPage extends StatefulWidget {
   const CongratulationsPage({super.key});
