@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar3.dart';
 import 'package:quality_education_app/models/enrolled_course_model.dart';
 import 'package:quality_education_app/commons/color.dart';
+import 'package:intl/intl.dart';
 
 class ReceiptPage extends StatefulWidget {
   final EnrolledCourse course;
