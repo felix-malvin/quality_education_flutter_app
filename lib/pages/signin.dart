@@ -341,7 +341,7 @@ class _SigninPage extends State<SigninPage> {
               SizedBox(height: 10),
               Text(
                 'Login Failed',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),
               Text(
