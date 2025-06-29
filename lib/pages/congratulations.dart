@@ -94,7 +94,14 @@ class _CongratulationsPage extends State<CongratulationsPage> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ReceiptPage(course: widget.course),
+                    ),
+                  );
+                },
                 style: TextButton.styleFrom(
                   backgroundColor: CustomColors.primary,
                   foregroundColor: CustomColors.white,
