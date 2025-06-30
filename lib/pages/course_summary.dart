@@ -7,6 +7,7 @@ import 'package:quality_education_app/pages/congratulations.dart';
 import 'package:quality_education_app/data/enrolled_course_data.dart';
 import 'package:quality_education_app/models/enrolled_course_model.dart';
 import 'package:quality_education_app/commons/color.dart';
+import 'dart:math';
 
 class CourseSummaryPage extends StatefulWidget {
   final Course course;
@@ -403,6 +404,38 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
       return 'Rp$result';
     }
 
+    String generateCustomTransactionId() {
+      final now = DateTime.now();
+
+      // Format tanggal: ddMMyy
+      final date =
+          "${now.day.toString().padLeft(2, '0')}"
+          "${now.month.toString().padLeft(2, '0')}"
+          "${(now.year % 100).toString().padLeft(2, '0')}";
+
+      // Format waktu: HHmmss
+      final time =
+          "${now.hour.toString().padLeft(2, '0')}"
+          "${now.minute.toString().padLeft(2, '0')}"
+          "${now.second.toString().padLeft(2, '0')}";
+
+      // Random 4 digit angka
+      final random = Random().nextInt(10000).toString().padLeft(4, '0');
+
+      return "EV$date$time$random";
+    }
+
+    int totalLessons = widget.course.lessonSections
+      .fold(0, (sum, section) => sum + section.lessons.length);
+
+    var enrolledCourse = EnrolledCourse(
+      id: generateCustomTransactionId(),
+      enrolledAt: DateTime.now(),
+      paymentMethod: selectedMethod.name,
+      progress: List.filled(totalLessons, false), 
+      enrolledCourse: widget.course,
+    );
+
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -455,15 +488,6 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
                 SizedBox(
                   child: ElevatedButton(
                     onPressed: () {
-                      enrolledCourses.add(
-                        EnrolledCourse(
-                          id: DateTime.now().millisecondsSinceEpoch.toString(),
-                          enrolledAt: DateTime.now(),
-                          paymentMethod: selectedMethod.name,
-                          progress: 0,
-                          enrolledCourse: widget.course,
-                        ),
-                      );
                       Navigator.push(
                         context,
                         MaterialPageRoute(
