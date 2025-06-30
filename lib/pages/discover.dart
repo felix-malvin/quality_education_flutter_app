@@ -3,6 +3,7 @@ import 'package:quality_education_app/widgets/appbar/custom_appbar2.dart';
 import 'package:quality_education_app/commons/color.dart';
 import 'package:quality_education_app/data/news_data.dart';
 import 'package:quality_education_app/widgets/widget_support/textstyle.dart';
+import 'package:quality_education_app/models/news_model.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
@@ -27,6 +28,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
 
     return Scaffold(
       appBar: CustomAppBar(title: 'Discover'),
+      backgroundColor: CustomColors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -93,7 +95,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
     );
   }
 
-   Widget _buildContentHeader(String title, VoidCallback onTap) {
+  Widget _buildContentHeader(String title, VoidCallback onTap) {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -109,7 +111,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
     );
   }
 
-  Widget _buildHeadline(Map<String, dynamic> news) {
+  Widget _buildHeadline(News news) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -117,7 +119,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
         ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: Image.asset(
-            news['image'],
+            news.image,
             height: 180,
             width: double.infinity,
             fit: BoxFit.cover,
@@ -125,13 +127,73 @@ class _DiscoverPageState extends State<DiscoverPage> {
         ),
         SizedBox(height: 10),
         Text(
-          news['title'],
+          news.title,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         SizedBox(height: 4),
         Text(
-          '${news['author']} • ${news['time']}',
+          '${news.author} • ${news.time}',
           style: TextStyle(fontSize: 14, color: CustomColors.primary),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildNewsItem(News news) {
+    return Column(
+      children: [
+        InkWell(
+          onTap: () {},
+          child: Padding(
+            padding: const EdgeInsets.only(
+              top: 10,
+              bottom: 10,
+              left: 30,
+              right: 30,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    news.image,
+                    width: 80,
+                    height: 80,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                SizedBox(width: 18),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        news.title,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 15,
+                        ),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        '${news.author} • ${news.time}',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: CustomColors.primary,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Divider(color: Colors.grey[300]),
         ),
       ],
     );
