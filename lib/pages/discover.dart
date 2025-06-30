@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar2.dart';
 import 'package:quality_education_app/commons/color.dart';
 import 'package:quality_education_app/data/news_data.dart';
+import 'package:quality_education_app/widgets/widget_support/textstyle.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
@@ -86,6 +87,22 @@ class _DiscoverPageState extends State<DiscoverPage> {
                 return _buildNewsItem(item);
               },
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+   Widget _buildContentHeader(String title, VoidCallback onTap) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(title, style: AppWidget.HomeSubtitle()),
+          InkWell(
+            onTap: onTap,
+            child: Text('See all', style: AppWidget.SecondaryText()),
           ),
         ],
       ),
