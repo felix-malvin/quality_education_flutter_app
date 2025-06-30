@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar2.dart';
+import 'package:quality_education_app/commons/color.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
@@ -29,7 +30,46 @@ class _DiscoverPageState extends State<DiscoverPage> {
             ),
           ),
           SizedBox(height: 20),
-  
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: SizedBox(
+              height: 40,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children:
+                    filters.map((tag) {
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: RawChip(
+                          label: Text(tag, style: TextStyle(fontSize: 15)),
+                          selected: selectedFilter == tag,
+                          onSelected: (_) {
+                            setState(() {
+                              selectedFilter = tag;
+                            });
+                          },
+                          backgroundColor: Colors.grey[200],
+                          selectedColor: CustomColors.primary,
+                          labelStyle: TextStyle(
+                            color:
+                                selectedFilter == tag
+                                    ? Colors.white
+                                    : Colors.black,
+                          ),
+                          showCheckmark: false,
+                          side: BorderSide.none,
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+              ),
+            ),
+          ),
+          SizedBox(height: 16),
+          
         ],
       ),
     );
