@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar2.dart';
 import 'package:quality_education_app/commons/color.dart';
+import 'package:quality_education_app/data/news_data.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
@@ -15,6 +16,14 @@ class _DiscoverPageState extends State<DiscoverPage> {
 
   @override
   Widget build(BuildContext context) {
+    final headlineNews = news.first;
+    final filteredNews =
+        selectedFilter == 'All'
+            ? news.where((n) => n != headlineNews).toList()
+            : news
+                .where((n) => n != headlineNews && n.tag == selectedFilter)
+                .toList();
+
     return Scaffold(
       appBar: CustomAppBar(title: 'Discover'),
       body: Column(
@@ -69,7 +78,6 @@ class _DiscoverPageState extends State<DiscoverPage> {
             ),
           ),
           SizedBox(height: 16),
-          
         ],
       ),
     );
