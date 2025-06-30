@@ -1,6 +1,7 @@
 import 'package:quality_education_app/models/badge_model.dart';
 
 class Course {
+  final String id;
   final String image;
   final String name;
   final String category;
@@ -19,6 +20,7 @@ class Course {
   final List<LessonSection> lessonSections;
 
   Course({
+    required this.id,
     required this.image,
     required this.name,
     required this.category,
@@ -49,5 +51,3 @@ class LessonSection {
     required this.lessons,
   });
 }
-
-
