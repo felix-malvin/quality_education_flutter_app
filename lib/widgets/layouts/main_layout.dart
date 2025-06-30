@@ -17,8 +17,8 @@ class _MainLayoutState extends State<MainLayout> {
   final List<Widget> _pages = [
     HomePage(),
     MyCoursePage(),
-    FavoritePage(),
-    ProfilePage()
+    DiscoverPage(),
+    InboxPage()
   ];
 
   void _onItemTapped(int index) {
@@ -68,11 +68,11 @@ class _MainLayoutState extends State<MainLayout> {
             ),
             BottomNavigationBarItem(
               icon: _getIcon(2, Icons.favorite, Icons.favorite_border),
-              label: 'Favorite',
+              label: 'Discover',
             ),
             BottomNavigationBarItem(
-              icon: _getIcon(3, Icons.person, Icons.person_outline),
-              label: 'Profile',
+              icon: _getIcon(3, Icons.chat, Icons.chat_outlined),
+              label: 'Inbox',
             ),
           ],
         ),
