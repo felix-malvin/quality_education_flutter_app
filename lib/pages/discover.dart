@@ -78,6 +78,15 @@ class _DiscoverPageState extends State<DiscoverPage> {
             ),
           ),
           SizedBox(height: 16),
+          Expanded(
+            child: ListView.builder(
+              itemCount: filteredNews.length,
+              itemBuilder: (context, index) {
+                final item = filteredNews[index];
+                return _buildNewsItem(item);
+              },
+            ),
+          ),
         ],
       ),
     );
