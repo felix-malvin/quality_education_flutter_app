@@ -4,7 +4,7 @@ class EnrolledCourse {
   final String id;
   final DateTime enrolledAt;
   final String paymentMethod;
-  final int progress;
+  final List<bool> progress;
   final Course enrolledCourse;
 
   EnrolledCourse({
@@ -15,3 +15,4 @@ class EnrolledCourse {
     required this.enrolledCourse,
   });
 }
+
