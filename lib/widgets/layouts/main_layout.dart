@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/pages/home.dart';
 import 'package:quality_education_app/pages/my_courses.dart';
+import 'package:quality_education_app/pages/discover.dart';
+import 'package:quality_education_app/pages/inbox.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
