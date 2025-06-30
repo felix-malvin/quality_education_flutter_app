@@ -9,6 +9,9 @@ class DiscoverPage extends StatefulWidget {
 }
 
 class _DiscoverPageState extends State<DiscoverPage> {
+  final List<String> filters = ['All', 'Latest', 'Popular', 'Hot'];
+  String selectedFilter = 'All';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
