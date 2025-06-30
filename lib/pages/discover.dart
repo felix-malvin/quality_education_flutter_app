@@ -108,4 +108,32 @@ class _DiscoverPageState extends State<DiscoverPage> {
       ),
     );
   }
+
+  Widget _buildHeadline(Map<String, dynamic> news) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: 10),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Image.asset(
+            news['image'],
+            height: 180,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+        ),
+        SizedBox(height: 10),
+        Text(
+          news['title'],
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(height: 4),
+        Text(
+          '${news['author']} • ${news['time']}',
+          style: TextStyle(fontSize: 14, color: CustomColors.primary),
+        ),
+      ],
+    );
+  }
 }
