@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quality_education_app/widgets/appbar/custom_appbar2.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
@@ -10,8 +11,9 @@ class DiscoverPage extends StatefulWidget {
 class _DiscoverPageState extends State<DiscoverPage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Inbox Page"),
+    return Scaffold(
+      appBar: CustomAppBar(title: 'Discover'),
+      body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: []),
     );
   }
 }
