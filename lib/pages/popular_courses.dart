@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar.dart';
 import 'package:quality_education_app/widgets/widget_support/textstyle.dart';
+import 'package:quality_education_app/pages/course_detail.dart';
+import 'package:quality_education_app/models/course_model.dart';
+import 'package:quality_education_app/data/course_data.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PopularCoursesPage extends StatefulWidget {
   const PopularCoursesPage({super.key});
