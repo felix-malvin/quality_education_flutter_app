@@ -228,4 +228,32 @@ class _ProfilePage extends State<ProfilePage> {
       ),
     );
   }
+
+  Widget _buildAboutSection() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 30),
+            child: Text(
+              'About',
+              style: TextStyle(
+                color: CustomColors.primaryText,
+                fontWeight: FontWeight.w700,
+                fontSize: 20,
+              ),
+            ),
+          ),
+          SizedBox(height: 2),
+          _buildListTileItem(Icons.emoji_objects, 'Edvance Guide', () {}),
+          _buildListTileDivider(),
+          _buildListTileItem(Icons.content_paste, 'Terms and Conditions', () {}),
+          _buildListTileDivider(),
+          _buildListTileItem(Icons.policy, 'Privacy Policy', () {}),
+        ],
+      ),
+    );
+  }
 }
