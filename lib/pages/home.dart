@@ -176,7 +176,18 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          CircleAvatar(child: Image.asset('assets/app_logo.png')),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SubjectsPage()),
+              );
+            },
+            child: CircleAvatar(
+              radius: 23,
+              backgroundImage: AssetImage('assets/avatar_logo.jpg'),
+            ),
+          ),
         ],
       ),
     );
