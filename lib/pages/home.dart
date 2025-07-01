@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quality_education_app/pages/profile.dart';
 import 'package:quality_education_app/widgets/widget_support/textstyle.dart';
 import 'package:quality_education_app/pages/popular_courses.dart';
 import 'package:quality_education_app/pages/subjects.dart';
@@ -7,6 +8,7 @@ import 'package:quality_education_app/models/course_model.dart';
 import 'package:quality_education_app/pages/search.dart';
 import 'package:quality_education_app/data/course_data.dart';
 import 'package:quality_education_app/commons/color.dart';
+import 'package:shimmer/shimmer.dart';
 import 'dart:async';
 
 class HomePage extends StatefulWidget {
@@ -19,6 +21,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final PageController _pageController = PageController();
   int _currentIndex = 0;
+  bool isLoading = true;
 
   final List<String> _images = [
     'assets/carousel_image_1.jpg',
@@ -33,6 +36,15 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _startAutoSlide();
+    _setStartLoading();
+  }
+
+  void _setStartLoading() {
+    Future.delayed(Duration(seconds: 3), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
   }
 
   void _startAutoSlide() {
@@ -180,7 +192,7 @@ class _HomePageState extends State<HomePage> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SubjectsPage()),
+                MaterialPageRoute(builder: (context) => ProfilePage()),
               );
             },
             child: CircleAvatar(
@@ -489,25 +501,48 @@ class _HomePageState extends State<HomePage> {
           );
         }),
         SizedBox(height: 10),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: courses.length,
-          itemBuilder: (context, index) {
-            final course = courses[index];
-            return Padding(
-              padding: EdgeInsets.only(bottom: 15, left: 30, right: 30),
-              child: _buildCourse(course, () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CourseDetailPage(course: course),
+        isLoading
+            ? ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: courses.length,
+              itemBuilder: (context, index) {
+                final course = courses[index];
+                return Shimmer.fromColors(
+                  baseColor: Colors.grey.shade300,
+                  highlightColor: Colors.grey.shade100,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 15, left: 30, right: 30),
+                    child: Container(
+                      width: double.infinity,
+                      height: 115,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF9F9F9),
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: Color(0xFFE6E6E6), width: 1),
+                      ),
+                    ),
                   ),
                 );
-              }),
-            );
-          },
-        ),
+              },
+            )
+            : ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: courses.length,
+              itemBuilder: (context, index) {
+                final course = courses[index];
+                return Padding(
+                  padding: EdgeInsets.only(bottom: 15, left: 30, right: 30),
+                  child: _buildCourse(course, () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CourseDetailPage(course: course,)),
+                    );
+                  }),
+                );
+              },
+            ),
       ],
     );
   }
