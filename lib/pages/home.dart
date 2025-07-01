@@ -418,33 +418,43 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(course.name, style: AppWidget.CourseName()),
-                              Row(
-                                children: [
-                                  Text(
-                                    course.duration,
-                                    style: AppWidget.CourseDuration(),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Tooltip(
+                                  message: course.name,
+                                  child: Text(
+                                    course.name,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: AppWidget.CourseName(),
                                   ),
-                                  SizedBox(width: 5),
-                                  Container(
-                                    width: 3,
-                                    height: 3,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF0066FF),
-                                      shape: BoxShape.circle,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      course.duration,
+                                      style: AppWidget.CourseDuration(),
                                     ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    "${course.lessonSections.length} lessons",
-                                    style: AppWidget.CourseLessons(),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    SizedBox(width: 5),
+                                    Container(
+                                      width: 3,
+                                      height: 3,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFF0066FF),
+                                        shape: BoxShape.circle,
+                                      ),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      "${course.lessonSections.length} lessons",
+                                      style: AppWidget.CourseLessons(),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                           InkWell(
                             onTap: onTap,
@@ -507,7 +517,6 @@ class _HomePageState extends State<HomePage> {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: courses.length,
               itemBuilder: (context, index) {
-                final course = courses[index];
                 return Shimmer.fromColors(
                   baseColor: Colors.grey.shade300,
                   highlightColor: Colors.grey.shade100,
@@ -537,7 +546,9 @@ class _HomePageState extends State<HomePage> {
                   child: _buildCourse(course, () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CourseDetailPage(course: course,)),
+                      MaterialPageRoute(
+                        builder: (context) => CourseDetailPage(course: course),
+                      ),
                     );
                   }),
                 );
