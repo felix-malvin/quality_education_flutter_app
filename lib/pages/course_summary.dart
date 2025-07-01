@@ -59,6 +59,7 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
                 _buildCourseDetailSection(),
                 _buildSectionDivider(media),
                 _buildPriceSummarySection(),
+                _buildSectionDivider(media),
                 _buildPaymentDetailSection(
                   selectedMethod,
                   _navigateAndSelectMethod,
@@ -407,19 +408,16 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
     String generateCustomTransactionId() {
       final now = DateTime.now();
 
-      // Format tanggal: ddMMyy
       final date =
           "${now.day.toString().padLeft(2, '0')}"
           "${now.month.toString().padLeft(2, '0')}"
           "${(now.year % 100).toString().padLeft(2, '0')}";
 
-      // Format waktu: HHmmss
       final time =
           "${now.hour.toString().padLeft(2, '0')}"
           "${now.minute.toString().padLeft(2, '0')}"
           "${now.second.toString().padLeft(2, '0')}";
 
-      // Random 4 digit angka
       final random = Random().nextInt(10000).toString().padLeft(4, '0');
 
       return "EV$date$time$random";
