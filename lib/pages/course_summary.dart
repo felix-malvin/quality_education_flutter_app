@@ -120,30 +120,6 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 5),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 2, horizontal: 5),
-                    decoration: BoxDecoration(
-                      color: Color(
-                        int.parse('0x17' + widget.course.badges[1].badgeColor),
-                      ),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Center(
-                      child: Text(
-                        widget.course.badges[1].badgeName,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(
-                            int.parse(
-                              '0xFF' + widget.course.badges[1].badgeColor,
-                            ),
-                          ),
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
               SizedBox(height: 3),
@@ -191,10 +167,9 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
   }
 
   Widget _buildSectionDivider(media) {
-    return Container(
-      width: media.width,
-      height: 7,
-      decoration: BoxDecoration(color: Color(0xFFF0F1F5)),
+    return Divider(
+      thickness: 7,
+      color: Color(0xFFF0F1F5),
     );
   }
 
@@ -284,6 +259,14 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
   }
 
   Widget _buildPriceSummarySection() {
+    String formatRupiah(amount) {
+      String result = amount.toString().replaceAllMapped(
+        RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
+        (Match match) => '${match[1]}.',
+      );
+      return 'Rp$result';
+    }
+
     return Container(
       padding: EdgeInsets.only(top: 15, bottom: 20, left: 30, right: 30),
       child: Column(
@@ -310,7 +293,7 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
                 ),
               ),
               Text(
-                '${widget.course.price}',
+                formatRupiah(widget.course.price),
                 style: TextStyle(
                   fontSize: 16,
                   color: Color(0xFF2E2E2E),
@@ -332,7 +315,7 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
                 ),
               ),
               Text(
-                '${widget.course.price * 0.11}',
+                formatRupiah(widget.course.price * 0.11),
                 style: TextStyle(
                   fontSize: 16,
                   color: Color(0xFF2E2E2E),
@@ -486,6 +469,7 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
                 SizedBox(
                   child: ElevatedButton(
                     onPressed: () {
+                      enrolledCourses.add(enrolledCourse);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -523,9 +507,4 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
       ),
     );
   }
-  
-
-  
-
-
 }
