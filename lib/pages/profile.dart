@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar.dart';
 import 'package:quality_education_app/commons/color.dart';
+import 'package:quality_education_app/data/profile_data.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -59,6 +60,13 @@ class _ProfilePage extends State<ProfilePage> {
         size: 16,
       ),
       onTap: onTap,
+    );
+  }
+
+  Widget _buildSectionDivider(media) {
+    return Divider(
+      thickness: 7,
+      color: Color(0xFFF0F1F5),
     );
   }
 
@@ -126,4 +134,6 @@ class _ProfilePage extends State<ProfilePage> {
       ),
     );
   }
+
+  
 }
