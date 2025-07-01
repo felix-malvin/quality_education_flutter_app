@@ -14,6 +14,18 @@ class PopularCoursesPage extends StatefulWidget {
 }
 
 class _PopularCoursesPage extends State<PopularCoursesPage> {
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 3), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
