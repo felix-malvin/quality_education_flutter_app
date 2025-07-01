@@ -92,13 +92,13 @@ class _PopularCoursesPage extends State<PopularCoursesPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Tooltip(
-                                  message: course.name,
                                   child: Text(
                                     course.name,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: AppWidget.CourseName(),
                                   ),
+                                  message: course.name,
                                 ),
                                 Row(
                                   children: [
