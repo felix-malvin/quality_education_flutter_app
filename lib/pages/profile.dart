@@ -274,7 +274,28 @@ class _ProfilePage extends State<ProfilePage> {
             ),
           ),
           SizedBox(height: 15),
-          
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {},
+              style: TextButton.styleFrom(
+                backgroundColor: CustomColors.primary,
+                foregroundColor: CustomColors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+              ),
+              child: Text(
+                "Sign Out",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Color(0xFFF9F9F9),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
