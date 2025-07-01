@@ -203,5 +203,29 @@ class _ProfilePage extends State<ProfilePage> {
     );
   }
 
-  
+  Widget _buildHelpSection() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 30),
+            child: Text(
+              'Help',
+              style: TextStyle(
+                color: CustomColors.primaryText,
+                fontWeight: FontWeight.w700,
+                fontSize: 20,
+              ),
+            ),
+          ),
+          SizedBox(height: 2),
+          _buildListTileItem(Icons.contact_support, 'Help Center', () {}),
+          _buildListTileDivider(),
+          _buildListTileItem(Icons.bubble_chart, 'Your Report', () {}),
+        ],
+      ),
+    );
+  }
 }
