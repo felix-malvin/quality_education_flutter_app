@@ -162,40 +162,7 @@ class _ProfilePage extends State<ProfilePage> {
           SizedBox(height: 2),
           _buildListTileItem(Icons.payment, 'Payment Method', () {}),
           _buildListTileDivider(),
-          _buildListTileItem(Icons.history, 'Activity', () {
-            Navigator.of(context)
-                .push(
-                  PageRouteBuilder(
-                    transitionDuration: Duration(milliseconds: 1000),
-                    pageBuilder:
-                        (context, animation, secondaryAnimation) =>
-                            ActivityPage(),
-                    transitionsBuilder: (
-                      context,
-                      animation,
-                      secondaryAnimation,
-                      child,
-                    ) {
-                      const begin = Offset(1.0, 0.0);
-                      const end = Offset.zero;
-                      final tween = Tween(
-                        begin: begin,
-                        end: end,
-                      ).chain(CurveTween(curve: Curves.ease));
-
-                      return SlideTransition(
-                        position: animation.drive(tween),
-                        child: child,
-                      );
-                    },
-                  ),
-                )
-                .then((hasUpdated) {
-                  if (hasUpdated == true) {
-                    setState(() {});
-                  }
-                });
-          }),
+          _buildListTileItem(Icons.history, 'Activity', () {}),
           _buildListTileDivider(),
           _buildListTileItem(Icons.language, 'Language', () {}),
         ],
