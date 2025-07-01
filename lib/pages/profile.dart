@@ -70,6 +70,13 @@ class _ProfilePage extends State<ProfilePage> {
     );
   }
 
+  Widget _buildListTileDivider() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      child: Divider(height: 0.2, color: Colors.black.withOpacity(0.1)),
+    );
+  }
+
   Widget _buildProfileHeader() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30),
@@ -135,5 +142,64 @@ class _ProfilePage extends State<ProfilePage> {
     );
   }
 
-  
+  Widget _buildAccountSection() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 30),
+            child: Text(
+              'Account',
+              style: TextStyle(
+                color: CustomColors.primaryText,
+                fontWeight: FontWeight.w700,
+                fontSize: 20,
+              ),
+            ),
+          ),
+          SizedBox(height: 2),
+          _buildListTileItem(Icons.payment, 'Payment Method', () {}),
+          _buildListTileDivider(),
+          _buildListTileItem(Icons.history, 'Activity', () {
+            Navigator.of(context)
+                .push(
+                  PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 1000),
+                    pageBuilder:
+                        (context, animation, secondaryAnimation) =>
+                            ActivityPage(),
+                    transitionsBuilder: (
+                      context,
+                      animation,
+                      secondaryAnimation,
+                      child,
+                    ) {
+                      const begin = Offset(1.0, 0.0);
+                      const end = Offset.zero;
+                      final tween = Tween(
+                        begin: begin,
+                        end: end,
+                      ).chain(CurveTween(curve: Curves.ease));
+
+                      return SlideTransition(
+                        position: animation.drive(tween),
+                        child: child,
+                      );
+                    },
+                  ),
+                )
+                .then((hasUpdated) {
+                  if (hasUpdated == true) {
+                    setState(() {});
+                  }
+                });
+          }),
+          _buildListTileDivider(),
+          _buildListTileItem(Icons.language, 'Language', () {}),
+        ],
+      ),
+    );
+  }
 }
