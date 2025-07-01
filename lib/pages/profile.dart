@@ -256,4 +256,27 @@ class _ProfilePage extends State<ProfilePage> {
       ),
     );
   }
+
+  Widget _buildBottomSection(media) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+      width: media.width,
+      decoration: BoxDecoration(color: Color(0xFFF0F1F5)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Version 1.0.0',
+            style: TextStyle(
+              color: CustomColors.primaryText,
+              fontWeight: FontWeight.w300,
+              fontSize: 16,
+            ),
+          ),
+          SizedBox(height: 15),
+          
+        ],
+      ),
+    );
+  }
 }
