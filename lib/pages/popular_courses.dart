@@ -25,7 +25,7 @@ class _PopularCoursesPage extends State<PopularCoursesPage> {
       });
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,17 +35,13 @@ class _PopularCoursesPage extends State<PopularCoursesPage> {
     );
   }
 
-  Widget _buildCourse(
-    String image,
-    String courseName,
-    String courseDuration,
-    int courseLessons,
-    int coursePrice,
-    String badgeName,
-    String badgeColor,
-  ) {
-    Color badge_name_color = Color(int.parse('0xFF' + badgeColor));
-    Color badge_container_color = Color(int.parse('0x17' + badgeColor));
+  Widget _buildCourse(Course course, VoidCallback onTap) {
+    Color badge_name_color = Color(
+      int.parse('0xFF' + course.badges[0].badgeColor),
+    );
+    Color badge_container_color = Color(
+      int.parse('0x17' + course.badges[0].badgeColor),
+    );
 
     String formatRupiah(amount) {
       String result = amount.toString().replaceAllMapped(
@@ -64,7 +60,7 @@ class _PopularCoursesPage extends State<PopularCoursesPage> {
         border: Border.all(color: Color(0xFFE6E6E6), width: 1),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 13),
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 13),
         child: Center(
           child: Row(
             children: [
@@ -74,7 +70,7 @@ class _PopularCoursesPage extends State<PopularCoursesPage> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Image.asset(
-                    image,
+                    course.image,
                     fit: BoxFit.cover,
                     width: double.infinity,
                   ),
@@ -82,74 +78,88 @@ class _PopularCoursesPage extends State<PopularCoursesPage> {
               ),
               SizedBox(width: 20),
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(courseName, style: AppWidget.CourseName()),
-                            Row(
+                child: Container(
+                  height: 80,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  courseDuration,
-                                  style: AppWidget.CourseDuration(),
-                                ),
-                                SizedBox(width: 5),
-                                Container(
-                                  width: 3,
-                                  height: 3,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF0066FF),
-                                    shape: BoxShape.circle,
+                                Tooltip(
+                                  message: course.name,
+                                  child: Text(
+                                    course.name,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: AppWidget.CourseName(),
                                   ),
                                 ),
-                                SizedBox(width: 5),
-                                Text(
-                                  "$courseLessons lessons",
-                                  style: AppWidget.CourseLessons(),
+                                Row(
+                                  children: [
+                                    Text(
+                                      course.duration,
+                                      style: AppWidget.CourseDuration(),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Container(
+                                      width: 3,
+                                      height: 3,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFF0066FF),
+                                        shape: BoxShape.circle,
+                                      ),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      "${course.lessonSections.length} lessons",
+                                      style: AppWidget.CourseLessons(),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          child: Icon(Icons.arrow_forward_ios),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Container(
-                          height: 22,
-                          padding: EdgeInsets.symmetric(
-                            vertical: 2,
-                            horizontal: 10,
                           ),
-                          decoration: BoxDecoration(
-                            color: badge_container_color,
-                            borderRadius: BorderRadius.circular(5),
+                          InkWell(
+                            onTap: onTap,
+                            child: Icon(Icons.arrow_forward_ios, size: 25),
                           ),
-                          child: Center(
-                            child: Text(
-                              badgeName,
-                              style: AppWidget.Badge(badge_name_color),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Container(
+                            height: 22,
+                            padding: EdgeInsets.symmetric(
+                              vertical: 2,
+                              horizontal: 10,
+                            ),
+                            decoration: BoxDecoration(
+                              color: badge_container_color,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Center(
+                              child: Text(
+                                course.badges[0].badgeName,
+                                style: AppWidget.Badge(badge_name_color),
+                              ),
                             ),
                           ),
-                        ),
-                        Text(
-                          formatRupiah(coursePrice),
-                          style: AppWidget.CoursePrice(),
-                        ),
-                      ],
-                    ),
-                  ],
+                          Text(
+                            formatRupiah(course.price),
+                            style: AppWidget.CoursePrice(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
