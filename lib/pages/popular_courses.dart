@@ -173,27 +173,50 @@ class _PopularCoursesPage extends State<PopularCoursesPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 10),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            children:
-                popularCourses.map((course) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: _buildCourse(
-                      course['image'] as String,
-                      course['name'] as String,
-                      course['duration'] as String,
-                      course['lessons'] as int,
-                      course['price'] as int,
-                      course['badge'] as String,
-                      course['badge_color'] as String,
+        isLoading
+            ? ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: courses.length,
+              itemBuilder: (context, index) {
+                return Shimmer.fromColors(
+                  baseColor: Colors.grey.shade300,
+                  highlightColor: Colors.grey.shade100,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 15, left: 30, right: 30),
+                    child: Container(
+                      width: double.infinity,
+                      height: 115,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF9F9F9),
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: Color(0xFFE6E6E6), width: 1),
+                      ),
                     ),
-                  );
-                }).toList(),
-          ),
-        ),
+                  ),
+                );
+              },
+            )
+            : ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: courses.length,
+              itemBuilder: (context, index) {
+                final course = courses[index];
+                return Padding(
+                  padding: EdgeInsets.only(bottom: 15, left: 30, right: 30),
+                  child: _buildCourse(course, () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CourseDetailPage(course: course),
+                      ),
+                    );
+                  }),
+                );
+              },
+            ),
+        SizedBox(height: 15),
       ],
     );
   }
