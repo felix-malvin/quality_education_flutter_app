@@ -40,4 +40,25 @@ class _ProfilePage extends State<ProfilePage> {
       ),
     );
   }
+
+  Widget _buildListTileItem(IconData icon, String name, VoidCallback onTap) {
+    return ListTile(
+      contentPadding: EdgeInsets.only(left: 35, right: 35),
+      leading: Icon(icon, color: CustomColors.secondaryText),
+      title: Text(
+        name,
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 16,
+          color: CustomColors.secondaryText,
+        ),
+      ),
+      trailing: Icon(
+        Icons.arrow_forward_ios,
+        color: CustomColors.secondaryText,
+        size: 16,
+      ),
+      onTap: onTap,
+    );
+  }
 }
