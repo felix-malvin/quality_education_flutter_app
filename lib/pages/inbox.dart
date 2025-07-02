@@ -95,7 +95,39 @@ class _InboxPageState extends State<InboxPage> {
   }
 
   void showDeleteInboxSnackbar(BuildContext context, String text) {
-    
+    final snackBar = SnackBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      content: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 6,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.info, color: Colors.white),
+            SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                text,
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+      ),
+      duration: Duration(seconds: 3),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   void showDeleteConfirmationSheet() {
@@ -133,7 +165,6 @@ class _InboxPageState extends State<InboxPage> {
                       onPressed: () {
                         deleteAll();
                         Navigator.pop(context);
-                        
                       },
                       style: TextButton.styleFrom(
                         backgroundColor: Colors.red,
@@ -199,8 +230,9 @@ class _InboxPageState extends State<InboxPage> {
     final groupedNotifications = groupByDate(rawNotifications);
 
     return Scaffold(
-      appBar: CustomAppBar(title: 'Inbox',
-      actions: [
+      appBar: CustomAppBar(
+        title: 'Inbox',
+        actions: [
           Theme(
             data: Theme.of(context).copyWith(
               popupMenuTheme: PopupMenuThemeData(
@@ -263,7 +295,8 @@ class _InboxPageState extends State<InboxPage> {
                   ],
             ),
           ),
-        ],),
+        ],
+      ),
       backgroundColor: CustomColors.white,
       body:
           groupedNotifications.isEmpty
