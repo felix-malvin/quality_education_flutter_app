@@ -181,6 +181,42 @@ class _InboxPageState extends State<InboxPage> {
                                 ),
                               ],
                             ),
+                            subtitle: Text(
+                              notif['content'],
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                if (!notif['isRead'])
+                                  Container(
+                                    width: 10,
+                                    height: 10,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFFFC524),
+                                      shape: BoxShape.circle,
+                                    ),
+                                  ),
+                                SizedBox(width: 8),
+                                Text(
+                                  formatTime(notif['date']),
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey[600],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            onTap: () {},
+                          ),
+                        );
+                      }),
+                      SizedBox(height: 18),
+                    ],
+                  );
+                },
+              ),
     );
   }
 }
