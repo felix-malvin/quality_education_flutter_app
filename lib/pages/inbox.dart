@@ -94,6 +94,10 @@ class _InboxPageState extends State<InboxPage> {
     });
   }
 
+  void showDeleteConfirmationSheet() {
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     final groupedNotifications = groupByDate(rawNotifications);
