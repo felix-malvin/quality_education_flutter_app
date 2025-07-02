@@ -94,6 +94,10 @@ class _InboxPageState extends State<InboxPage> {
     });
   }
 
+  void showDeleteInboxSnackbar(BuildContext context, String text) {
+    
+  }
+
   void showDeleteConfirmationSheet() {
     showModalBottomSheet(
       context: context,
