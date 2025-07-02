@@ -88,6 +88,12 @@ class _InboxPageState extends State<InboxPage> {
     });
   }
 
+  void deleteAll() {
+    setState(() {
+      rawNotifications.clear();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
