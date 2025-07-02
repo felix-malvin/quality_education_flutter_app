@@ -211,7 +211,7 @@ class _InboxPageState extends State<InboxPage> {
               icon: Icon(Icons.more_vert, color: Colors.black87),
               onSelected: (value) {
                 if (value == 'read_all') markAllAsRead();
-                
+                if (value == 'delete_all') showDeleteConfirmationSheet();
               },
               itemBuilder:
                   (context) => [
