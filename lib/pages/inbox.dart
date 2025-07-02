@@ -95,7 +95,99 @@ class _InboxPageState extends State<InboxPage> {
   }
 
   void showDeleteConfirmationSheet() {
-    
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return Container(
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: CustomColors.white,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Delete All Inbox?',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+              ),
+              SizedBox(height: 8),
+              Text(
+                'This action cannot be undone.',
+                style: TextStyle(color: Colors.grey[600], fontSize: 18),
+              ),
+              SizedBox(height: 24),
+              Column(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        deleteAll();
+                        Navigator.pop(context);
+                        
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        foregroundColor: CustomColors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 35,
+                          vertical: 15,
+                        ),
+                      ),
+                      child: Text(
+                        "Delete All",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFFF9F9F9),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 18),
+                  SizedBox(
+                    width: double.infinity,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: Color(0xFFF0F1F5),
+                        foregroundColor: CustomColors.primary,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 35,
+                          vertical: 15,
+                        ),
+                      ),
+                      child: Text(
+                        "Cancel",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: CustomColors.primary,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
