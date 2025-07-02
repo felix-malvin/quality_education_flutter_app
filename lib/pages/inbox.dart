@@ -119,7 +119,47 @@ class _InboxPageState extends State<InboxPage> {
               },
               itemBuilder:
                   (context) => [
-                    
+                    PopupMenuItem(
+                      value: 'read_all',
+                      enabled: !isAllRead,
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.mark_email_read,
+                            color:
+                                isAllRead ? Colors.grey : CustomColors.primary,
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            "Read All",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: isAllRead ? Colors.grey : Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem(
+                      value: 'delete_all',
+                      enabled: !isInboxEmpty,
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.delete,
+                            color: isInboxEmpty ? Colors.grey : Colors.red,
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            "Delete All",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: isInboxEmpty ? Colors.grey : Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
             ),
           ),
