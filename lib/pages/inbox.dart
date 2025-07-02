@@ -58,7 +58,7 @@ class _InboxPageState extends State<InboxPage> {
   ];
 
   bool get isInboxEmpty => rawNotifications.isEmpty;
-  
+
   bool get isAllRead =>
       rawNotifications.isNotEmpty &&
       rawNotifications.every((notif) => notif['isRead'] == true);
@@ -96,10 +96,38 @@ class _InboxPageState extends State<InboxPage> {
 
   @override
   Widget build(BuildContext context) {
+    final groupedNotifications = groupByDate(rawNotifications);
+
     return Scaffold(
-      appBar: CustomAppBar(title: 'Inbox '),
+      appBar: CustomAppBar(
+        title: 'Inbox',
+        actions: [
+          Theme(
+            data: Theme.of(context).copyWith(
+              popupMenuTheme: PopupMenuThemeData(
+                color: Colors.white,
+                elevation: 10,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ),
+            child: PopupMenuButton<String>(
+              icon: Icon(Icons.more_vert, color: Colors.black87),
+              onSelected: (value) {
+                
+              },
+              itemBuilder:
+                  (context) => [
+                    
+                  ],
+            ),
+          ),
+        ],
+      ),
       backgroundColor: CustomColors.white,
-      body: groupedNotifications.isEmpty
+      body:
+          groupedNotifications.isEmpty
               ? Center(
                 child: Text('No inbox.', style: TextStyle(color: Colors.grey)),
               )
@@ -154,7 +182,6 @@ class _InboxPageState extends State<InboxPage> {
                             setState(() {
                               rawNotifications.remove(notif);
                             });
-
                           },
                           child: ListTile(
                             contentPadding: EdgeInsets.symmetric(
