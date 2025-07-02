@@ -80,6 +80,14 @@ class _InboxPageState extends State<InboxPage> {
     return DateFormat('HH:mm').format(date);
   }
 
+  void markAllAsRead() {
+    setState(() {
+      for (var notif in rawNotifications) {
+        notif['isRead'] = true;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
