@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar2.dart';
 import 'package:quality_education_app/commons/color.dart';
+import 'package:intl/intl.dart';
+import 'dart:collection';
 
 class InboxPage extends StatefulWidget {
   const InboxPage({super.key});
@@ -54,7 +56,19 @@ class _InboxPageState extends State<InboxPage> {
       'isRead': false,
     },
   ];
-  
+
+  LinkedHashMap<String, List<Map<String, dynamic>>> groupByDate(
+    List<Map<String, dynamic>> list,
+  ) {
+    final map = LinkedHashMap<String, List<Map<String, dynamic>>>();
+    for (var item in list) {
+      final date = DateTime.parse(item['date']);
+      final formattedDate = DateFormat('MMMM d, yyyy').format(date);
+      map.putIfAbsent(formattedDate, () => []).add(item);
+    }
+    return map;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
