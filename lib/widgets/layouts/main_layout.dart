@@ -67,7 +67,7 @@ class _MainLayoutState extends State<MainLayout> {
               label: 'My Course',
             ),
             BottomNavigationBarItem(
-              icon: _getIcon(2, Icons.favorite, Icons.favorite_border),
+              icon: _getIcon(2, Icons.browse_gallery, Icons.browse_gallery_outlined),
               label: 'Discover',
             ),
             BottomNavigationBarItem(
