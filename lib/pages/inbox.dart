@@ -165,6 +165,10 @@ class _InboxPageState extends State<InboxPage> {
                       onPressed: () {
                         deleteAll();
                         Navigator.pop(context);
+                        showDeleteInboxSnackbar(
+                          context,
+                          'All messages removed from inbox.',
+                        );
                       },
                       style: TextButton.styleFrom(
                         backgroundColor: Colors.red,
