@@ -128,6 +128,34 @@ class _InboxPageState extends State<InboxPage> {
                           ),
                         ),
                       ),
+                      ...notifs.map((notif) {
+                        final notifId = '${notif['title']}-${notif['date']}';
+                        return Dismissible(
+                          key: Key(notifId),
+                          direction: DismissDirection.endToStart,
+                          background: Container(),
+                          secondaryBackground: Container(
+                            color: Colors.red,
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            alignment: Alignment.centerRight,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  'Delete',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                SizedBox(width: 8),
+                                Icon(Icons.delete, color: Colors.white),
+                              ],
+                            ),
+                          ),
+                          onDismissed: (_) {
+                            setState(() {
+                              rawNotifications.remove(notif);
+                            });
+
+                          },
     );
   }
 }
