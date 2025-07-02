@@ -57,6 +57,12 @@ class _InboxPageState extends State<InboxPage> {
     },
   ];
 
+  bool get isInboxEmpty => rawNotifications.isEmpty;
+  
+  bool get isAllRead =>
+      rawNotifications.isNotEmpty &&
+      rawNotifications.every((notif) => notif['isRead'] == true);
+
   LinkedHashMap<String, List<Map<String, dynamic>>> groupByDate(
     List<Map<String, dynamic>> list,
   ) {
