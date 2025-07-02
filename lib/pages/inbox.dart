@@ -156,6 +156,31 @@ class _InboxPageState extends State<InboxPage> {
                             });
 
                           },
+                          child: ListTile(
+                            contentPadding: EdgeInsets.symmetric(
+                              horizontal: 30,
+                              vertical: 5,
+                            ),
+                            leading: CircleAvatar(
+                              backgroundColor: Color(0x89D9ECFB),
+                              child: Icon(
+                                notif['avatar'],
+                                color: CustomColors.primary,
+                              ),
+                            ),
+                            title: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    notif['title'],
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
     );
   }
 }
