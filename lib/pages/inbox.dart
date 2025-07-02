@@ -99,9 +99,8 @@ class _InboxPageState extends State<InboxPage> {
     final groupedNotifications = groupByDate(rawNotifications);
 
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'Inbox',
-        actions: [
+      appBar: CustomAppBar(title: 'Inbox',
+      actions: [
           Theme(
             data: Theme.of(context).copyWith(
               popupMenuTheme: PopupMenuThemeData(
@@ -115,6 +114,7 @@ class _InboxPageState extends State<InboxPage> {
             child: PopupMenuButton<String>(
               icon: Icon(Icons.more_vert, color: Colors.black87),
               onSelected: (value) {
+                if (value == 'read_all') markAllAsRead();
                 
               },
               itemBuilder:
@@ -163,8 +163,7 @@ class _InboxPageState extends State<InboxPage> {
                   ],
             ),
           ),
-        ],
-      ),
+        ],),
       backgroundColor: CustomColors.white,
       body:
           groupedNotifications.isEmpty
