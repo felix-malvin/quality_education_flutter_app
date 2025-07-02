@@ -99,9 +99,35 @@ class _InboxPageState extends State<InboxPage> {
     return Scaffold(
       appBar: CustomAppBar(title: 'Inbox '),
       backgroundColor: CustomColors.white,
-      body: Center(
-        child: Text('Inbox Page'),
-      ),
+      body: groupedNotifications.isEmpty
+              ? Center(
+                child: Text('No inbox.', style: TextStyle(color: Colors.grey)),
+              )
+              : ListView.builder(
+                itemCount: groupedNotifications.length,
+                itemBuilder: (context, index) {
+                  final date = groupedNotifications.keys.elementAt(index);
+                  final notifs = groupedNotifications[date]!;
+
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        color: Colors.grey[200],
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 7,
+                          horizontal: 30,
+                        ),
+                        child: Text(
+                          date,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
     );
   }
 }
