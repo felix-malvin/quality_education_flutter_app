@@ -69,6 +69,11 @@ class _InboxPageState extends State<InboxPage> {
     return map;
   }
 
+  String formatTime(String dateStr) {
+    final date = DateTime.parse(dateStr);
+    return DateFormat('HH:mm').format(date);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
