@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/models/course_model.dart';
 import 'package:quality_education_app/pages/course_summary.dart';
+import 'package:quality_education_app/data/enrolled_course_data.dart';
 
 class CourseDetailPage extends StatefulWidget {
   final Course course;
@@ -276,7 +277,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                               children: [
                                 _buildPageViewAboutSection(media),
                                 _buildPageViewLessonSection(media),
-                                _buildPageViewReviewSection(media)
+                                _buildPageViewReviewSection(media),
                               ],
                             ),
                           ),
@@ -846,6 +847,10 @@ class _CourseDetailPageState extends State<CourseDetailPage>
   }
 
   Widget _buildBottomSection(media, func) {
+    bool isAlreadyEnrolled(Course course, enrolledCourses) {
+      return enrolledCourses.any((e) => e.enrolledCourse.id == course.id);
+    }
+
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -898,12 +903,18 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                 SizedBox(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CourseSummaryPage(course: widget.course),
-                        ),
-                      );
+                      if (isAlreadyEnrolled(widget.course, enrolledCourses)) {
+                        showAlreadyEnrolledSnackbar(context);
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder:
+                                (context) =>
+                                    CourseSummaryPage(course: widget.course),
+                          ),
+                        );
+                      }
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: Color(0xFF0066FF),
@@ -933,5 +944,44 @@ class _CourseDetailPageState extends State<CourseDetailPage>
         ),
       ),
     );
+  }
+
+  void showAlreadyEnrolledSnackbar(BuildContext context) {
+    final snackBar = SnackBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      content: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        decoration: BoxDecoration(
+          color: Color(0xFF0066FF),
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 6,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.info, color: Colors.white),
+            SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                "You have already enrolled in this course.",
+                style: TextStyle(color: Colors.white, fontSize: 16),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
+      ),
+      duration: Duration(seconds: 3),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
