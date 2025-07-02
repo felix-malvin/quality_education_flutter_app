@@ -197,6 +197,10 @@ class _InboxPageState extends State<InboxPage> {
                     child: TextButton(
                       onPressed: () {
                         Navigator.pop(context);
+                        showDeleteInboxSnackbar(
+                          context,
+                          'All messages removed from inbox.',
+                        );
                       },
                       style: TextButton.styleFrom(
                         backgroundColor: Color(0xFFF0F1F5),
@@ -358,6 +362,10 @@ class _InboxPageState extends State<InboxPage> {
                             setState(() {
                               rawNotifications.remove(notif);
                             });
+                            showDeleteInboxSnackbar(
+                              context,
+                              'Message deleted.',
+                            );
                           },
                           child: ListTile(
                             contentPadding: EdgeInsets.symmetric(
