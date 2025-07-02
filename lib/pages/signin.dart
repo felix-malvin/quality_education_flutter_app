@@ -216,6 +216,7 @@ class _SigninPage extends State<SigninPage> {
           const dummyPassword = '1';
 
           if (username == dummyUsername && password == dummyPassword) {
+            showLoginSuccessfullySnackbar(context);
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => MainLayout()),
@@ -384,5 +385,44 @@ class _SigninPage extends State<SigninPage> {
         );
       },
     );
+  }
+
+  void showLoginSuccessfullySnackbar(BuildContext context) {
+    final snackBar = SnackBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      content: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        decoration: BoxDecoration(
+          color: Color(0xFF0066FF),
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 6,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.info, color: Colors.white),
+            SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                "Login successfully!",
+                style: TextStyle(color: Colors.white, fontSize: 16),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
+      ),
+      duration: Duration(seconds: 3),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
