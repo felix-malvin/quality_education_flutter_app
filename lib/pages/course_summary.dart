@@ -92,74 +92,78 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
             ),
           ),
           SizedBox(width: 20),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 2, horizontal: 5),
-                    decoration: BoxDecoration(
-                      color: Color(
-                        int.parse('0x17' + widget.course.badges[0].badgeColor),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 2, horizontal: 5),
+                      decoration: BoxDecoration(
+                        color: Color(
+                          int.parse('0x17' + widget.course.badges[0].badgeColor),
+                        ),
+                        borderRadius: BorderRadius.circular(5),
                       ),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Center(
-                      child: Text(
-                        widget.course.badges[0].badgeName,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(
-                            int.parse(
-                              '0xFF' + widget.course.badges[0].badgeColor,
+                      child: Center(
+                        child: Text(
+                          widget.course.badges[0].badgeName,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Color(
+                              int.parse(
+                                '0xFF' + widget.course.badges[0].badgeColor,
+                              ),
                             ),
+                            fontWeight: FontWeight.w500,
                           ),
-                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 3),
-              Text(
-                widget.course.name,
-                style: TextStyle(
-                  color: Color(0xFF2E2E2E),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w800,
+                  ],
                 ),
-              ),
-              SizedBox(height: 2),
-              Row(
-                children: [
-                  Icon(
-                    Icons.account_circle,
-                    color: Color(0xFF585555),
-                    size: 20,
+                SizedBox(height: 3),
+                Text(
+                  widget.course.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Color(0xFF2E2E2E),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
                   ),
-                  SizedBox(width: 3),
-                  Text(
-                    widget.course.tutor,
-                    style: TextStyle(
+                ),
+                SizedBox(height: 2),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.account_circle,
                       color: Color(0xFF585555),
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
+                      size: 20,
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 2),
-              Text(
-                'Rp 160.000',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF0066FF),
-                  fontWeight: FontWeight.w700,
+                    SizedBox(width: 3),
+                    Text(
+                      widget.course.tutor,
+                      style: TextStyle(
+                        color: Color(0xFF585555),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+                SizedBox(height: 2),
+                Text(
+                  'Rp 160.000',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color(0xFF0066FF),
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -167,10 +171,7 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
   }
 
   Widget _buildSectionDivider(media) {
-    return Divider(
-      thickness: 7,
-      color: Color(0xFFF0F1F5),
-    );
+    return Divider(thickness: 7, color: Color(0xFFF0F1F5));
   }
 
   Widget _buildCourseDetailSection() {
@@ -406,14 +407,16 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
       return "EV$date$time$random";
     }
 
-    int totalLessons = widget.course.lessonSections
-      .fold(0, (sum, section) => sum + section.lessons.length);
+    int totalLessons = widget.course.lessonSections.fold(
+      0,
+      (sum, section) => sum + section.lessons.length,
+    );
 
     var enrolledCourse = EnrolledCourse(
       id: generateCustomTransactionId(),
       enrolledAt: DateTime.now(),
       paymentMethod: selectedMethod.name,
-      progress: List.filled(totalLessons, false), 
+      progress: List.filled(totalLessons, false),
       enrolledCourse: widget.course,
     );
 
@@ -473,7 +476,9 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CongratulationsPage(course: enrolledCourse),
+                          builder:
+                              (context) =>
+                                  CongratulationsPage(course: enrolledCourse),
                         ),
                       );
                       print(enrolledCourses);
