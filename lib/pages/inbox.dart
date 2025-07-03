@@ -419,7 +419,11 @@ class _InboxPageState extends State<InboxPage> {
                                 ),
                               ],
                             ),
-                            onTap: () {},
+                            onTap: () {
+                              setState(() {
+                                notif['isRead'] = true;
+                              });
+                            },
                           ),
                         );
                       }),
