@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar.dart';
 import 'package:quality_education_app/models/enrolled_course_model.dart';
 import 'package:quality_education_app/data/enrolled_course_data.dart';
+import 'package:quality_education_app/pages/lesson_detail.dart';
 import 'package:quality_education_app/commons/color.dart';
 
 class LessonsPage extends StatefulWidget {
@@ -342,7 +343,7 @@ class _LessonsPage extends State<LessonsPage>
                                               context,
                                               MaterialPageRoute(
                                                 builder:
-                                                    (_) => CourseContentPage(
+                                                    (_) => LessonDetailPage(
                                                       courseId: widget.courseId,
                                                       index:
                                                           globalLessonNumber -
