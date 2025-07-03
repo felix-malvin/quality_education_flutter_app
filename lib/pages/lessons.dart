@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar.dart';
-import 'package:quality_education_app/models/course_model.dart';
 import 'package:quality_education_app/models/enrolled_course_model.dart';
 import 'package:quality_education_app/data/enrolled_course_data.dart';
 import 'package:quality_education_app/commons/color.dart';
@@ -104,7 +103,7 @@ class _LessonsPage extends State<LessonsPage>
                   controller: _tabController,
                   children: [
                     _buildPageViewLessonSection(media),
-                    _buildUnderDevelopmentPage()
+                    _buildUnderDevelopmentPage(),
                   ],
                 ),
               ),
@@ -271,7 +270,7 @@ class _LessonsPage extends State<LessonsPage>
                               ],
                             ),
                             const SizedBox(height: 10),
-                            /// Nested ListView.builder untuk lessons
+
                             ListView.builder(
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
@@ -347,7 +346,7 @@ class _LessonsPage extends State<LessonsPage>
                                                       courseId: widget.courseId,
                                                       index:
                                                           globalLessonNumber -
-                                                          1, // pakai indeks allLessons
+                                                          1,
                                                     ),
                                               ),
                                             );
