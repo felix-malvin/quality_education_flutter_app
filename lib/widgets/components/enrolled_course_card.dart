@@ -135,7 +135,31 @@ class EnrolledCourseCard extends StatelessWidget {
                               ),
                             ],
                           ),
-                          
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: 140,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: LinearProgressIndicator(
+                                    minHeight: 8,
+                                    value: completed / total,
+                                    backgroundColor: const Color(0xFFE6E6E6),
+                                    color: const Color(0xFF0066FF),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                '${completed}/${total}',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: Color(0xFF585555),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
