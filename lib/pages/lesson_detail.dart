@@ -52,11 +52,31 @@ class _LessonDetailPageState extends State<LessonDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final content = List.generate(
+      50,
+      (i) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Text('Konten materi paragraf ${i + 1}...',
+            style: TextStyle(fontSize: 16)),
+      ),
+    );
+
     return Scaffold(
-      appBar: CustomAppBar(title: 'Lesson'),
-      backgroundColor: CustomColors.white,
-      body: Center(
-        child: Text('Lesson Detail Page'),
+      backgroundColor: Color(0xFFF9F9F9),
+      appBar: CustomAppBar(title: 'Lessons'),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
+        child: ListView(
+          controller: _scrollController,
+          children: [
+            Text(
+              'Judul Materi ${widget.index + 1}',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            ...content,
+            SizedBox(height: 30),
+          ],
+        ),
       ),
     );
   }
