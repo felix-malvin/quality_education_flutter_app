@@ -19,8 +19,16 @@ class EnrolledCourseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Container(
+    Color category_color = Color(
+      int.parse('0xFF' + item.enrolledCourse.categoryBaseColor),
+    );
+    Color category_container_color = Color(
+      int.parse('0x17' + item.enrolledCourse.categoryBaseColor),
+    );
+
+    return Column(
+      children: [
+        Container(
           width: double.infinity,
           height: 125,
           decoration: BoxDecoration(
@@ -81,6 +89,64 @@ class EnrolledCourseCard extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-    ],);
+                                    SizedBox(height: 4),
+                                    Text(
+                                      item.enrolledCourse.name,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: AppWidget.CourseName(),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (_) => LessonsPage(
+                                            courseId: item.enrolledCourse.id,
+                                          ),
+                                    ),
+                                  );
+                                  onReturn(); // panggil callback untuk rebuild
+                                },
+                                child: Icon(Icons.arrow_forward_ios, size: 25),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.person,
+                                size: 20,
+                                color: Color(0xFF585555),
+                              ),
+                              SizedBox(width: 5),
+                              Text(
+                                item.enrolledCourse.tutor,
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFF585555),
+                                ),
+                              ),
+                            ],
+                          ),
+                          
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 15),
+      ],
+    );
   }
 }
