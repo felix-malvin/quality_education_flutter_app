@@ -271,5 +271,115 @@ class _LessonsPage extends State<LessonsPage>
                               ],
                             ),
                             const SizedBox(height: 10),
+                            /// Nested ListView.builder untuk lessons
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: section.lessons.length,
+                              itemBuilder: (context, lessonIndex) {
+                                int globalLessonNumber = lessonCounter++;
+                                String lessonNumberFormatted =
+                                    globalLessonNumber.toString().padLeft(
+                                      2,
+                                      '0',
+                                    );
+
+                                String globalLessonTitle =
+                                    allLessons[globalLessonNumber - 1];
+
+                                return Container(
+                                  margin: const EdgeInsets.only(bottom: 10),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFF9F9F9),
+                                    borderRadius: BorderRadius.circular(30),
+                                    border: Border.all(
+                                      color: const Color(0xFFE6E6E6),
+                                      width: 1,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 9,
+                                      horizontal: 14,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Container(
+                                              width: 40,
+                                              height: 40,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Color(0x89D9ECFB),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  lessonNumberFormatted,
+                                                  style: const TextStyle(
+                                                    color: Color(0xFF0066FF),
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 15),
+                                            Text(
+                                              globalLessonTitle,
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700,
+                                                color: Color(0xFF585555),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        InkWell(
+                                          onTap: () async {
+                                            await Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder:
+                                                    (_) => CourseContentPage(
+                                                      courseId: widget.courseId,
+                                                      index:
+                                                          globalLessonNumber -
+                                                          1, // pakai indeks allLessons
+                                                    ),
+                                              ),
+                                            );
+                                            setState(() {});
+                                          },
+                                          child: const Icon(
+                                            Icons.play_circle,
+                                            size: 30,
+                                            color: Color(0xFF0066FF),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+
+                            const SizedBox(height: 20),
+                          ],
+                        );
+                      },
+                    ),
+                    SizedBox(height: 20),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
