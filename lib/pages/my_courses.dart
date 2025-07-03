@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar2.dart';
-import 'package:quality_education_app/widgets/components/ongoing_course_card.dart';
-import 'package:quality_education_app/data/enrolled_course_data.dart';
-import 'package:quality_education_app/models/enrolled_course_model.dart';
+import 'package:quality_education_app/widgets/components/enrolled_course_card.dart';
 import 'package:quality_education_app/widgets/components/complete_course_card.dart';
+import 'package:quality_education_app/data/enrolled_course_data.dart';
 
 class MyCoursePage extends StatefulWidget {
   const MyCoursePage({super.key});
@@ -94,24 +93,25 @@ class _MyCoursePage extends State<MyCoursePage>
                       child: ListView.builder(
                         itemCount: enrolledCourses.length,
                         itemBuilder: (context, index) {
-                          final enrolled = enrolledCourses[index];
-                          return OngoingCourseCard(
-                            image: enrolled.enrolledCourse.image,
-                            courseName: enrolled.enrolledCourse.name,
-                            courseTutor: enrolled.enrolledCourse.tutor,
-                            courseCategory: enrolled.enrolledCourse.category,
-                            courseLessons: enrolled.enrolledCourse.lessonSections.length,
-                            baseColor:
-                                enrolled.enrolledCourse.categoryBaseColor,
-                            progress: 0,
-                            course: enrolled.enrolledCourse,
+                          final item = enrolledCourses[index];
+                          final total = item.progress.length;
+                          final completed =
+                              item.progress.where((p) => p).length;
+
+                          return EnrolledCourseCard(
+                            item: item,
+                            total: total,
+                            completed: completed,
+                            onReturn:
+                                () => setState(() {}), // untuk refresh progress
                           );
                         },
                       ),
                     ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                  child: Column(children: [
+                  child: Column(
+                    children: [
                       CompletedCourseCard(
                         image: 'assets/math_course_1.jpg',
                         courseName: 'Mastering Math',
