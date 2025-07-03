@@ -27,7 +27,29 @@ class _LessonDetailPageState extends State<LessonDetailPage> {
     _scrollController = ScrollController();
     _scrollController.addListener(_handleScroll);
   }
-  
+
+  void _handleScroll() {
+    if (!_isCompleted &&
+        _scrollController.offset >=
+            _scrollController.position.maxScrollExtent) {
+      setState(() {
+        _isCompleted = true;
+        print(widget.courseId);
+        print(widget.index);
+        final course = enrolledCourses.firstWhere(
+          (e) => e.enrolledCourse.id == widget.courseId,
+        );
+        course.progress[widget.index] = true;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
