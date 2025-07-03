@@ -3,16 +3,24 @@ import 'package:quality_education_app/pages/lessons.dart';
 import 'package:quality_education_app/widgets/widget_support/textstyle.dart';
 import 'package:quality_education_app/models/enrolled_course_model.dart';
 
-class EnrolledCourseCard extends StatefulWidget {
-  const EnrolledCourseCard({super.key});
+class EnrolledCourseCard extends StatelessWidget {
+  final EnrolledCourse item;
+  final int completed;
+  final int total;
+  final VoidCallback onReturn;
 
-  @override
-  State<EnrolledCourseCard> createState() => _EnrolledCourseCardState();
-}
+  const EnrolledCourseCard({
+    super.key,
+    required this.item,
+    required this.completed,
+    required this.total,
+    required this.onReturn,
+  });
 
-class _EnrolledCourseCardState extends State<EnrolledCourseCard> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(children: [
+
+    ],);
   }
 }
