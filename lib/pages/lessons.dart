@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar.dart';
 import 'package:quality_education_app/models/course_model.dart';
+import 'package:quality_education_app/models/enrolled_course_model.dart';
+import 'package:quality_education_app/data/enrolled_course_data.dart';
 import 'package:quality_education_app/commons/color.dart';
 
 class LessonsPage extends StatefulWidget {
-  final Course course;
+  final String courseId;
 
-  const LessonsPage({Key? key, required this.course}) : super(key: key);
+  const LessonsPage({super.key, required this.courseId});
 
   @override
   _LessonsPage createState() => _LessonsPage();
@@ -15,12 +17,23 @@ class LessonsPage extends StatefulWidget {
 class _LessonsPage extends State<LessonsPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  int lessonCounter = 1;
+
+  late EnrolledCourse enrolledCourse;
+  late List<String> allLessons;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+
+    enrolledCourse = enrolledCourses.firstWhere(
+      (e) => e.enrolledCourse.id == widget.courseId,
+    );
+
+    allLessons =
+        enrolledCourse.enrolledCourse.lessonSections
+            .expand((section) => section.lessons)
+            .toList();
   }
 
   @override
