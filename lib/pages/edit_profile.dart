@@ -220,6 +220,34 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
+  Widget _buildInputBox(
+    String placeholder,
+    TextEditingController controller,
+    FocusNode focusNode, {
+    String? Function(String?)? validator,
+    List<TextInputFormatter>? inputFormatters,
+  }) {
+    return TextFormField(
+      controller: controller,
+      focusNode: focusNode,
+      validator: validator,
+      decoration: InputDecoration(
+        hintText: placeholder,
+        filled: true,
+        fillColor: Color(0xFFF0F1F5),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Color(0xFF0066FF), width: 1),
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+      inputFormatters: inputFormatters,
+    );
+  }
+
   Widget _buildBottomSection(media) {
     return Align(
       alignment: Alignment.bottomCenter,
