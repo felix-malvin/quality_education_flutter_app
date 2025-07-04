@@ -121,12 +121,16 @@ class _ProfilePage extends State<ProfilePage> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => EditProfilePage(),
                         ),
-                      );
+                      ).then((hasUpdated) {
+                        if (hasUpdated == true) {
+                          setState(() {});
+                        }
+                      });
                     },
                     child: const Text(
                       'Edit Profile',
