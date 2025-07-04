@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar.dart';
 import 'package:quality_education_app/commons/color.dart';
 import 'package:quality_education_app/data/profile_data.dart';
+import 'package:flutter/services.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -181,6 +182,30 @@ class _EditProfilePageState extends State<EditProfilePage> {
           _buildBottomSection(media),
         ],
       ),
+    );
+  }
+
+  Widget _buildInputField(
+    String label,
+    String placeholder,
+    TextEditingController controller,
+    FocusNode focusNode, {
+    String? Function(String?)? validator,
+    List<TextInputFormatter>? inputFormatters,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildLabel(label),
+        SizedBox(height: 5),
+        _buildInputBox(
+          placeholder,
+          controller,
+          focusNode,
+          validator: validator,
+          inputFormatters: inputFormatters,
+        ),
+      ],
     );
   }
 }
