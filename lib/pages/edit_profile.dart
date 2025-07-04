@@ -26,9 +26,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final _phoneFocus = FocusNode();
   final _emailFocus = FocusNode();
 
-  Future<void> _pickDate() async {
-
-  }
+  Future<void> _pickDate() async {}
 
   @override
   void dispose() {
@@ -46,28 +44,142 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 
   void _saveChanges() {
-  if (_formKey.currentState!.validate()) {
-    profileData['name'] = _nameController.text;
-    profileData['username'] = _usernameController.text;
-    profileData['phone'] = _phoneController.text;
-    profileData['email'] = _emailController.text;
-    profileData['gender'] = _gender;
-    profileData['birthDate'] = _birthDate?.toIso8601String();
+    if (_formKey.currentState!.validate()) {
+      profileData['name'] = _nameController.text;
+      profileData['username'] = _usernameController.text;
+      profileData['phone'] = _phoneController.text;
+      profileData['email'] = _emailController.text;
+      profileData['gender'] = _gender;
+      profileData['birthDate'] = _birthDate?.toIso8601String();
 
-    showSaveChangesSnackbar(context);
+      showSaveChangesSnackbar(context);
 
-    // Pop keluar dan beri sinyal ke halaman sebelumnya agar refresh
-    Navigator.pop(context, true);
+      // Pop keluar dan beri sinyal ke halaman sebelumnya agar refresh
+      Navigator.pop(context, true);
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
+
     return Scaffold(
-      appBar: CustomAppBar(title: "Edit Profile"),
-      backgroundColor: CustomColors.white,
-      body: Center(
-        child: Text("Edit Profile Page"),
+      backgroundColor: const Color(0xFFF9F9F9),
+      appBar: CustomAppBar(title: 'Edit Profile'),
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    Center(
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage: AssetImage(
+                              'assets/avatar_logo.jpg',
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text("Change Profile"),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20),
+
+                    // Nama
+                    _buildInputField(
+                      'Name',
+                      'Enter your name',
+                      _nameController,
+                      _nameFocus,
+                      validator:
+                          (value) =>
+                              value == null || value.isEmpty
+                                  ? 'Nama tidak boleh kosong'
+                                  : null,
+                      inputFormatters: [LengthLimitingTextInputFormatter(16)],
+                    ),
+                    SizedBox(height: 10),
+
+                    // Username
+                    _buildInputField(
+                      'Username',
+                      'Enter your username',
+                      _usernameController,
+                      _usernameFocus,
+                      validator:
+                          (value) =>
+                              value == null || value.isEmpty
+                                  ? 'Username tidak boleh kosong'
+                                  : null,
+                      inputFormatters: [LengthLimitingTextInputFormatter(12)],
+                    ),
+                    SizedBox(height: 10),
+
+                    // No Telepon
+                    _buildInputField(
+                      'Telephone',
+                      'Enter your telephone',
+                      _phoneController,
+                      _phoneFocus,
+                      validator:
+                          (value) =>
+                              value == null || value.isEmpty
+                                  ? 'Nomor telepon tidak boleh kosong'
+                                  : null,
+                    ),
+                    SizedBox(height: 10),
+
+                    // Email
+                    _buildInputField(
+                      'Email',
+                      'Enter your email',
+                      _emailController,
+                      _emailFocus,
+                      validator: (value) {
+                        if (value == null || value.isEmpty)
+                          return 'Email tidak boleh kosong';
+                        final emailRegex = RegExp(
+                          r'^[\w-.]+@([\w-]+\.)+[\w]{2,4}$',
+                        );
+                        return !emailRegex.hasMatch(value)
+                            ? 'Email tidak valid'
+                            : null;
+                      },
+                    ),
+                    SizedBox(height: 10),
+
+                    // Jenis Kelamin
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildLabel('Gender'),
+                        SizedBox(height: 5),
+                        _buildGenderDropdown(_gender, (val) {
+                          setState(() => _gender = val);
+                        }),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+
+                    // Tanggal Lahir
+                    _buildDatePickerField('Birth date', _birthDate, _pickDate),
+                    SizedBox(height: 120),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          _buildBottomSection(media),
+        ],
       ),
     );
   }
