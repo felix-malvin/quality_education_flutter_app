@@ -318,7 +318,36 @@ class _EditProfilePageState extends State<EditProfilePage> {
           ),
         ),
         SizedBox(height: 5),
-        
+        InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(8),
+          child: InputDecorator(
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Color(0xFFF0F1F5),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide.none,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xFF0066FF), width: 1),
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
+              child: Text(
+                selectedDate != null
+                    ? "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}"
+                    : 'Pilih tanggal',
+                style: TextStyle(
+                  color: selectedDate != null ? Colors.black : Colors.grey[600],
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
