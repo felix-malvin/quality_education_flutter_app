@@ -301,6 +301,28 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
+  Widget _buildDatePickerField(
+    String label,
+    DateTime? selectedDate,
+    VoidCallback onTap,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 16,
+            color: Color(0xFF2E2E2E),
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+        SizedBox(height: 5),
+        
+      ],
+    );
+  }
+
   Widget _buildBottomSection(media) {
     return Align(
       alignment: Alignment.bottomCenter,
