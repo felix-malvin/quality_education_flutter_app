@@ -209,6 +209,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
+  Widget _buildLabel(String label) {
+    return Text(
+      label,
+      style: TextStyle(
+        fontSize: 16,
+        color: Color(0xFF2E2E2E),
+        fontWeight: FontWeight.w800,
+      ),
+    );
+  }
+
   Widget _buildBottomSection(media) {
     return Align(
       alignment: Alignment.bottomCenter,
