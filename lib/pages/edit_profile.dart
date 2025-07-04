@@ -248,6 +248,36 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
+  Widget _buildGenderDropdown(
+    String? selectedGender,
+    void Function(String?) onChanged,
+  ) {
+    return DropdownButtonFormField<String>(
+      value: selectedGender,
+      items:
+          [
+            'Male',
+            'Female',
+          ].map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+      onChanged: onChanged,
+      validator:
+          (value) =>
+              value == null || value.isEmpty ? 'Pilih jenis kelamin' : null,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Color(0xFFF0F1F5),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Color(0xFF0066FF), width: 1),
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
+  }
+
   Widget _buildBottomSection(media) {
     return Align(
       alignment: Alignment.bottomCenter,
