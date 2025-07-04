@@ -27,7 +27,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final _phoneFocus = FocusNode();
   final _emailFocus = FocusNode();
 
-  Future<void> _pickDate() async {}
+  Future<void> _pickDate() async {
+    DateTime? date = await showDatePicker(
+      context: context,
+      initialDate: _birthDate ?? DateTime(2000),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+
+    if (date != null) {
+      setState(() => _birthDate = date);
+    }
+  }
 
   @override
   void dispose() {
