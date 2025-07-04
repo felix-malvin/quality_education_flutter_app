@@ -61,6 +61,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    _nameController.text = profileData['name'] ?? '';
+    _usernameController.text = profileData['username'] ?? '';
+    _phoneController.text = profileData['phone'] ?? '';
+    _emailController.text = profileData['email'] ?? '';
+    _gender = profileData['gender'];
+    _birthDate = DateTime.tryParse(profileData['birthDate'] ?? '');
+  }
+
+  @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
 
