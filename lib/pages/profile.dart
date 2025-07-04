@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar.dart';
 import 'package:quality_education_app/commons/color.dart';
 import 'package:quality_education_app/data/profile_data.dart';
+import 'package:quality_education_app/pages/edit_profile.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -64,10 +65,7 @@ class _ProfilePage extends State<ProfilePage> {
   }
 
   Widget _buildSectionDivider(media) {
-    return Divider(
-      thickness: 7,
-      color: Color(0xFFF0F1F5),
-    );
+    return Divider(thickness: 7, color: Color(0xFFF0F1F5));
   }
 
   Widget _buildListTileDivider() {
@@ -122,7 +120,14 @@ class _ProfilePage extends State<ProfilePage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditProfilePage(),
+                        ),
+                      );
+                    },
                     child: const Text(
                       'Edit Profile',
                       style: TextStyle(
@@ -216,7 +221,11 @@ class _ProfilePage extends State<ProfilePage> {
           SizedBox(height: 2),
           _buildListTileItem(Icons.emoji_objects, 'Edvance Guide', () {}),
           _buildListTileDivider(),
-          _buildListTileItem(Icons.content_paste, 'Terms and Conditions', () {}),
+          _buildListTileItem(
+            Icons.content_paste,
+            'Terms and Conditions',
+            () {},
+          ),
           _buildListTileDivider(),
           _buildListTileItem(Icons.policy, 'Privacy Policy', () {}),
         ],
