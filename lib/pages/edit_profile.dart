@@ -31,6 +31,37 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 
   @override
+  void dispose() {
+    _nameController.dispose();
+    _usernameController.dispose();
+    _phoneController.dispose();
+    _emailController.dispose();
+
+    _nameFocus.dispose();
+    _usernameFocus.dispose();
+    _phoneFocus.dispose();
+    _emailFocus.dispose();
+
+    super.dispose();
+  }
+
+  void _saveChanges() {
+  if (_formKey.currentState!.validate()) {
+    profileData['name'] = _nameController.text;
+    profileData['username'] = _usernameController.text;
+    profileData['phone'] = _phoneController.text;
+    profileData['email'] = _emailController.text;
+    profileData['gender'] = _gender;
+    profileData['birthDate'] = _birthDate?.toIso8601String();
+
+    showSaveChangesSnackbar(context);
+
+    // Pop keluar dan beri sinyal ke halaman sebelumnya agar refresh
+    Navigator.pop(context, true);
+  }
+}
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: "Edit Profile"),
