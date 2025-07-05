@@ -11,7 +11,18 @@ class SubjectsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9F9),
       appBar: CustomAppBar(title: 'Subjects'),
-      body: Center(child: Text('Subjects Page'),)
+      body: Container(
+        child: GridView.count(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+          crossAxisCount: 2,
+          mainAxisSpacing: 25,
+          crossAxisSpacing: 16,
+          childAspectRatio: 1.4,
+          children: subjects.map((subject) {
+            return SubjectCard(subject: subject);
+          }).toList(),
+        ),
+      ),
     );
   }
 }
