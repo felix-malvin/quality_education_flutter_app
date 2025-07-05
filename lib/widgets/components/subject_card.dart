@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:quality_education_app/models/subject_model.dart';
+import 'package:quality_education_app/pages/detail_subject.dart';
 
 class SubjectCard extends StatelessWidget {
-  final String title;
-  final String image;
-  final Color baseColor;
-  final Color quarterColor;
+  final Subject subject;
 
-  const SubjectCard({
-    super.key,
-    required this.title,
-    required this.image,
-    required this.baseColor,
-    required this.quarterColor,
-  });
+  const SubjectCard({super.key, required this.subject});
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +23,7 @@ class SubjectCard extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Container(
-          decoration: BoxDecoration(
-            color: baseColor,
-          ),
+          decoration: BoxDecoration(color: subject.baseColor),
           child: Stack(
             children: [
               // Quarter circle with icon
@@ -43,15 +34,20 @@ class SubjectCard extends StatelessWidget {
                   width: 60,
                   height: 78,
                   decoration: BoxDecoration(
-                    color: quarterColor,
+                    color: subject.quarterColor,
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(65),
                     ),
                   ),
                   child: Align(
-                    alignment: const Alignment(0, -0.5), 
+                    alignment: const Alignment(0, -0.5),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => SubjectDetailPage(subject: subject)),
+                        );
+                      },
                       icon: const Icon(Icons.arrow_forward),
                       color: const Color(0xFFF9F9F9),
                       iconSize: 25,
@@ -61,14 +57,17 @@ class SubjectCard extends StatelessWidget {
               ),
               // Content
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 12,
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset(image, width: 48),
+                    Image.asset(subject.image, width: 48),
                     Text(
-                      title,
+                      subject.title,
                       style: const TextStyle(
                         fontSize: 20,
                         color: Color(0xFFF9F9F9),
