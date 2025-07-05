@@ -55,4 +55,71 @@ class SubjectDetailPage extends StatelessWidget {
       ),
     );
   }
+
+  Widget buildCard({
+    required String title,
+    required String backgroundImage,
+    required Color overlayColor,
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 127,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 6,
+              offset: Offset(0, 3), // bayangan jatuh ke bawah
+            ),
+          ],
+        ),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            // Gambar latar
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(backgroundImage, fit: BoxFit.cover),
+            ),
+            // Overlay transparan
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: overlayColor.withOpacity(0.6),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Icon(icon, color: Colors.black, size: 20),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
