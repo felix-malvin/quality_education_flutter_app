@@ -31,7 +31,60 @@ class _QuizPageState extends State<QuizPage> {
       score = count;
       quizFinished = true;
     });
-    
+    _showResult();
+  }
+
+  void _showResult() {
+    showDialog(
+      context: context,
+      builder:
+          (_) => Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            backgroundColor: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.emoji_events, size: 64, color: Colors.orange),
+                  SizedBox(height: 12),
+                  Text(
+                    'Quiz Completed!',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Your score is $score / ${widget.subject.quiz.length}',
+                    style: TextStyle(fontSize: 18, color: Colors.grey[700]),
+                  ),
+                  SizedBox(height: 24),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton.icon(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => SubjectsPage()),
+                        );
+                      },
+                      icon: Icon(Icons.check_circle_outline),
+                      label: Text('Finish'),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 14),
+                        backgroundColor: Colors.blueAccent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+    );
   }
 
   @override
