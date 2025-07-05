@@ -56,7 +56,108 @@ class _QuizPageState extends State<QuizPage> {
               current.question,
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
-            
+            const SizedBox(height: 24),
+            ...current.options.map<Widget>((opt) {
+              bool isSelected = opt == selected;
+              return AnimatedContainer(
+                duration: Duration(milliseconds: 300),
+                margin: const EdgeInsets.symmetric(vertical: 8),
+                decoration: BoxDecoration(
+                  color:
+                      isSelected
+                          ? Color.fromARGB(30, 0, 102, 255)
+                          : Colors.white,
+                  border: Border.all(
+                    color:
+                        isSelected
+                            ? CustomColors.primary
+                            : Colors.grey.shade300,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    if (isSelected)
+                      BoxShadow(
+                        color: Colors.blue.withOpacity(0.2),
+                        blurRadius: 8,
+                        offset: Offset(0, 4),
+                      ),
+                  ],
+                ),
+                child: ListTile(
+                  title: Text(
+                    opt,
+                    style: TextStyle(
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.normal,
+                      color: isSelected ? CustomColors.primary : Colors.black87,
+                    ),
+                  ),
+                  onTap: () {
+                    setState(() {
+                      selectedAnswers[currentQuestionIndex] = opt;
+                    });
+                  },
+                ),
+              );
+            }).toList(),
+            const Spacer(),
+            Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed:
+                        currentQuestionIndex > 0
+                            ? () => setState(() => currentQuestionIndex--)
+                            : null,
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      side: const BorderSide(color: Color(0xff0066FF)),
+                    ),
+                    child: const Text(
+                      'Previous',
+                      style: TextStyle(
+                        color: Color(0xff0066FF),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 30),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed:
+                        currentQuestionIndex < widget.subject.quiz.length - 1
+                            ? () => setState(() => currentQuestionIndex++)
+                            : selectedAnswers.contains(null)
+                            ? null
+                            : _submitQuiz,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xff0066FF),
+                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Text(
+                      currentQuestionIndex < widget.subject.quiz.length - 1
+                          ? 'Next'
+                          : 'Submit',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 30,)
           ],
         ),
       ),
