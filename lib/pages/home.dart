@@ -314,19 +314,22 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildSubjectIcon(String name, String image) {
+  Widget _buildSubjectIcon(String name, String image, VoidCallback onTap) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          padding: EdgeInsets.all(10),
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Color(0x89D9ECFB),
+        InkWell(
+          child: Container(
+            padding: EdgeInsets.all(10),
+            width: 60,
+            height: 60,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Color(0x89D9ECFB),
+            ),
+            child: Center(child: Image.asset(image, width: 35)),
           ),
-          child: Center(child: Image.asset(image, width: 35)),
+          onTap: onTap,
         ),
         SizedBox(height: 6),
         Text(name, style: AppWidget.SubjectName(), textAlign: TextAlign.center),
