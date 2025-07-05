@@ -8,6 +8,8 @@ import 'package:quality_education_app/models/course_model.dart';
 import 'package:quality_education_app/pages/search.dart';
 import 'package:quality_education_app/data/course_data.dart';
 import 'package:quality_education_app/commons/color.dart';
+import 'package:quality_education_app/pages/detail_subject.dart';
+import 'package:quality_education_app/data/subject_data.dart';
 import 'package:shimmer/shimmer.dart';
 import 'dart:async';
 
@@ -285,28 +287,26 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildSubjectScroll() {
-    final subjects = [
-      {'name': 'Math', 'image': 'assets/math_logo_primary.png'},
-      {'name': 'Biology', 'image': 'assets/biology_logo_primary.png'},
-      {'name': 'Physics', 'image': 'assets/physics_logo_primary.png'},
-      {'name': 'Chemistry', 'image': 'assets/chemistry_logo_primary.png'},
-      {'name': 'Economy', 'image': 'assets/economy_logo_primary.png'},
-      {'name': 'Geography', 'image': 'assets/geography_logo_primary.png'},
-    ];
-
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: EdgeInsets.symmetric(horizontal: 30),
       child: Row(
         children:
-            subjects.asMap().entries.map((entry) {
+            subjects.asMap().entries.take(6).map((entry) {
               final index = entry.key;
               final subject = entry.value;
 
               return Row(
                 children: [
                   if (index != 0) SizedBox(width: 36),
-                  _buildSubjectIcon(subject['name']!, subject['image']!),
+                  _buildSubjectIcon(subject.title, subject.imagePrimary, () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SubjectDetailPage(subject: entry.value),
+                      ),
+                    );
+                  }),
                 ],
               );
             }).toList(),
