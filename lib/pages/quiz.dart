@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quality_education_app/pages/subjects.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar.dart';
 import 'package:quality_education_app/commons/color.dart';
 import 'package:quality_education_app/models/subject_model.dart';
+import 'package:quality_education_app/widgets/layouts/main_layout.dart';
 
 class QuizPage extends StatefulWidget {
   final Subject subject;
@@ -66,7 +66,7 @@ class _QuizPageState extends State<QuizPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => SubjectsPage()),
+                          MaterialPageRoute(builder: (_) => MainLayout()),
                         );
                       },
                       icon: Icon(Icons.check_circle_outline),
