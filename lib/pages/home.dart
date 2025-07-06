@@ -487,7 +487,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           Text(
-                            formatRupiah(course.price),
+                            formatRupiah(course.price.toInt()),
                             style: AppWidget.CoursePrice(),
                           ),
                         ],
