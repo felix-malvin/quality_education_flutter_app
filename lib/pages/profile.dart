@@ -3,6 +3,7 @@ import 'package:quality_education_app/widgets/appbar/custom_appbar.dart';
 import 'package:quality_education_app/commons/color.dart';
 import 'package:quality_education_app/data/profile_data.dart';
 import 'package:quality_education_app/pages/edit_profile.dart';
+import 'package:quality_education_app/pages/activity.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -171,7 +172,12 @@ class _ProfilePage extends State<ProfilePage> {
           SizedBox(height: 2),
           _buildListTileItem(Icons.payment, 'Payment Method', () {}),
           _buildListTileDivider(),
-          _buildListTileItem(Icons.history, 'Activity', () {}),
+          _buildListTileItem(Icons.history, 'Activity', () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ActivityPage()),
+            );
+          }),
           _buildListTileDivider(),
           _buildListTileItem(Icons.language, 'Language', () {}),
         ],
