@@ -5,7 +5,7 @@ import 'package:quality_education_app/commons/color.dart';
 import 'package:quality_education_app/widgets/components/barcode_generator.dart';
 import 'package:intl/intl.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:pdf/pdf.dart';
+import 'package:printing/printing.dart';
 
 class ReceiptPage extends StatefulWidget {
   final EnrolledCourse course;
@@ -71,6 +71,11 @@ class _ReceiptPage extends State<ReceiptPage> {
             ),
       ),
     );
+
+    await Printing.sharePdf(
+      bytes: await pdf.save(),
+      filename: 'edvance_${course.id}.pdf',
+    );
   }
 
   @override
@@ -92,7 +97,7 @@ class _ReceiptPage extends State<ReceiptPage> {
               _buildPaymentDetailSection(),
             ],
           ),
-          _buildBottomSection(media),
+          _buildBottomSection(media)
         ],
       ),
     );
@@ -236,7 +241,9 @@ class _ReceiptPage extends State<ReceiptPage> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  generateAndDownloadPdf();
+                },
                 style: TextButton.styleFrom(
                   backgroundColor: CustomColors.primary,
                   foregroundColor: CustomColors.white,
