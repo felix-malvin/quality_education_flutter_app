@@ -526,6 +526,8 @@ class _RatingPage extends State<RatingPage>
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
+                  Navigator.pop(context);
+                  _showRatingThanksSnackbar(context);
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: CustomColors.primary,
@@ -552,5 +554,39 @@ class _RatingPage extends State<RatingPage>
     );
   }
 
-  
+  void _showRatingThanksSnackbar(BuildContext context) {
+    final snackBar = SnackBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      content: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
+        decoration: BoxDecoration(
+          color: CustomColors.primary,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 6,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.info, color: Colors.white),
+            SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                'Thank you for your rating',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+      ),
+      duration: Duration(seconds: 3),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 }
