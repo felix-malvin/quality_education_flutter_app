@@ -4,6 +4,8 @@ import 'package:quality_education_app/models/enrolled_course_model.dart';
 import 'package:quality_education_app/commons/color.dart';
 import 'package:quality_education_app/widgets/components/barcode_generator.dart';
 import 'package:intl/intl.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/pdf.dart';
 
 class ReceiptPage extends StatefulWidget {
   final EnrolledCourse course;
@@ -15,6 +17,62 @@ class ReceiptPage extends StatefulWidget {
 }
 
 class _ReceiptPage extends State<ReceiptPage> {
+  Future<void> generateAndDownloadPdf() async {
+    final pdf = pw.Document();
+    final course = widget.course;
+
+    String formatRupiah(num amount) {
+      String result = amount
+          .toStringAsFixed(0)
+          .replaceAllMapped(
+            RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
+            (Match match) => '${match[1]}.',
+          );
+      return 'Rp$result';
+    }
+
+    final price = course.enrolledCourse.price;
+    final tax = price * 0.11;
+    final total = price + tax;
+
+    pdf.addPage(
+      pw.Page(
+        build:
+            (pw.Context context) => pw.Column(
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: [
+                pw.Text(
+                  "E-Receipt",
+                  style: pw.TextStyle(
+                    fontSize: 24,
+                    fontWeight: pw.FontWeight.bold,
+                  ),
+                ),
+                pw.SizedBox(height: 20),
+                pw.Text("Transaction ID: ${course.id}"),
+                pw.Text(
+                  "Purchase Date: ${DateFormat('d MMMM yyyy | HH:mm:ss').format(course.enrolledAt)}",
+                ),
+                pw.Text("Language: ${course.enrolledCourse.language}"),
+                pw.Text(
+                  "Lesson: ${course.enrolledCourse.lessonSections.length}",
+                ),
+                pw.Text("Level: ${course.enrolledCourse.level}"),
+                pw.SizedBox(height: 10),
+                pw.Divider(),
+                pw.Text("Amount: ${formatRupiah(price)}"),
+                pw.Text("Tax (11%): ${formatRupiah(tax)}"),
+                pw.Text("Total: ${formatRupiah(total)}"),
+                pw.SizedBox(height: 10),
+                pw.Divider(),
+                pw.Text("Payment Method: ${course.paymentMethod}"),
+                pw.Text("Payment Status: Paid"),
+              ],
+            ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -34,7 +92,7 @@ class _ReceiptPage extends State<ReceiptPage> {
               _buildPaymentDetailSection(),
             ],
           ),
-          _buildBottomSection(media)
+          _buildBottomSection(media),
         ],
       ),
     );
