@@ -3,7 +3,8 @@ import 'package:quality_education_app/widgets/appbar/custom_appbar.dart';
 import 'package:quality_education_app/commons/color.dart';
 import 'package:quality_education_app/data/enrolled_course_data.dart';
 import 'package:quality_education_app/pages/receipt.dart';
-import 'package:quality_education_app/pages/rating.dart';
+/* import 'package:quality_education_app/pages/rating.dart'; */
+import 'package:intl/intl.dart';
 
 class ActivityPage extends StatelessWidget {
   const ActivityPage({super.key});
@@ -18,6 +19,10 @@ class ActivityPage extends StatelessWidget {
       return 'Rp$result';
     }
 
+    String formatDate(DateTime dateTime) {
+      return DateFormat("MMMM d, y, HH.mm").format(dateTime);
+    }
+
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9F9),
       appBar: CustomAppBar(title: 'Activity'),
@@ -29,8 +34,15 @@ class ActivityPage extends StatelessWidget {
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
               )
-              : ListView.builder(
+              : ListView.separated(
                 itemCount: enrolledCourses.length,
+                separatorBuilder:
+                    (context, index) => Divider(
+                      height: 1,
+                      color: Colors.grey[300],
+                      indent: 30,
+                      endIndent: 30,
+                    ),
                 itemBuilder: (context, index) {
                   final course = enrolledCourses[index];
 
@@ -40,40 +52,48 @@ class ActivityPage extends StatelessWidget {
                         horizontal: 30,
                         vertical: 12,
                       ),
-                      margin: const EdgeInsets.only(bottom: 8),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // Top Row: Course Name and Price
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    course.enrolledCourse.name,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                                  Tooltip(
+                                    message: course.enrolledCourse.name,
+                                    child: SizedBox(
+                                      width: 180,
+                                      child: Text(
+                                        course.enrolledCourse.name,
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                        softWrap: false,
+                                        style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                   SizedBox(height: 4),
                                   Text(
                                     '#${course.id}',
                                     style: TextStyle(
-                                      fontSize: 13,
+                                      fontSize: 15,
                                       color: Colors.grey[600],
                                     ),
                                   ),
                                 ],
                               ),
-                              // Price
                               Text(
                                 formatRupiah(
                                   (course.enrolledCourse.price * 1.11).toInt(),
                                 ),
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.w600,
                                   color: CustomColors.primaryText,
                                 ),
@@ -81,28 +101,25 @@ class ActivityPage extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 16),
-                          // Row: Date + Give Rating Button
+                          // Bottom Row: Date + Rating Button
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'June 18, 2025, 22.34',
+                                formatDate(course.enrolledAt),
                                 style: TextStyle(
-                                  fontSize: 13,
+                                  fontSize: 15,
                                   color: Colors.grey[600],
                                 ),
                               ),
                               TextButton(
                                 onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder:
-                                          (context) => RatingPage(
-                                            course: course.enrolledCourse,
-                                          ),
-                                    ),
-                                  );
+                                  /* Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RatingPage(course: course.enrolledCourse),
+                        ),
+                      ); */
                                 },
                                 style: TextButton.styleFrom(
                                   foregroundColor: CustomColors.primary,
@@ -113,6 +130,7 @@ class ActivityPage extends StatelessWidget {
                                       'Give Rating',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w500,
+                                        fontSize: 18,
                                       ),
                                     ),
                                     SizedBox(width: 5),
