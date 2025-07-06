@@ -254,4 +254,232 @@ List<Subject> subjects = [
       ),
     ],
   ),
+  Subject(
+    title: "Economy",
+    image: "assets/economy_logo_secondary.png",
+    imagePrimary: "assets/economy_logo_primary.png",
+    baseColor: Colors.blue.shade900,
+    quarterColor: Colors.yellow.shade600,
+    quiz: [
+      Quiz(
+        question: 'What is GDP?',
+        options: [
+          'Gross Domestic Product',
+          'Global Debt Policy',
+          'General Demand Price',
+          'Government Development Plan',
+        ],
+        answer: 'Gross Domestic Product',
+      ),
+      Quiz(
+        question: 'What is the basic problem in economics?',
+        options: ['Profit', 'Scarcity', 'Money', 'Inflation'],
+        answer: 'Scarcity',
+      ),
+      Quiz(
+        question: 'Who is known as the father of economics?',
+        options: ['Adam Smith', 'Karl Marx', 'Keynes', 'Milton Friedman'],
+        answer: 'Adam Smith',
+      ),
+      Quiz(
+        question: 'Which is a direct tax?',
+        options: ['VAT', 'Income Tax', 'Sales Tax', 'Excise Duty'],
+        answer: 'Income Tax',
+      ),
+      Quiz(
+        question: 'What is inflation?',
+        options: [
+          'Rise in production',
+          'Rise in prices',
+          'Fall in money supply',
+          'Fall in demand',
+        ],
+        answer: 'Rise in prices',
+      ),
+      Quiz(
+        question: 'What is barter system?',
+        options: [
+          'Trading with money',
+          'Exchange of goods',
+          'Use of gold',
+          'Use of cheque',
+        ],
+        answer: 'Exchange of goods',
+      ),
+      Quiz(
+        question: 'What does RBI stand for?',
+        options: [
+          'Reserve Bank of India',
+          'Rural Bank of India',
+          'Royal Bank of India',
+          'Regional Bank of India',
+        ],
+        answer: 'Reserve Bank of India',
+      ),
+      Quiz(
+        question: 'Demand curve usually slopes?',
+        options: ['Upward', 'Downward', 'Vertical', 'Horizontal'],
+        answer: 'Downward',
+      ),
+      Quiz(
+        question: 'Which sector includes agriculture?',
+        options: ['Primary', 'Secondary', 'Tertiary', 'Quaternary'],
+        answer: 'Primary',
+      ),
+      Quiz(
+        question: 'What is opportunity cost?',
+        options: [
+          'Extra cost',
+          'Cost of next best alternative',
+          'Fixed cost',
+          'Sunk cost',
+        ],
+        answer: 'Cost of next best alternative',
+      ),
+    ],
+  ),
+  Subject(
+    title: "Geography",
+    image: "assets/geography_logo_secondary.png",
+    imagePrimary: "assets/geography_logo_primary.png",
+    baseColor: Colors.brown,
+    quarterColor: Colors.yellow.shade600,
+    quiz: [
+      Quiz(
+        question: 'What is the longest river in the world?',
+        options: ['Amazon', 'Nile', 'Yangtze', 'Mississippi'],
+        answer: 'Nile',
+      ),
+      Quiz(
+        question: 'Which continent is the Sahara Desert located in?',
+        options: ['Asia', 'Africa', 'Australia', 'Europe'],
+        answer: 'Africa',
+      ),
+      Quiz(
+        question: 'What is the capital of Japan?',
+        options: ['Seoul', 'Beijing', 'Tokyo', 'Bangkok'],
+        answer: 'Tokyo',
+      ),
+      Quiz(
+        question: 'Which is the largest ocean?',
+        options: ['Atlantic', 'Indian', 'Arctic', 'Pacific'],
+        answer: 'Pacific',
+      ),
+      Quiz(
+        question: 'Mount Everest is located in?',
+        options: ['India', 'Nepal', 'China', 'Bhutan'],
+        answer: 'Nepal',
+      ),
+      Quiz(
+        question: 'Which country has the most population?',
+        options: ['India', 'USA', 'China', 'Brazil'],
+        answer: 'China',
+      ),
+      Quiz(
+        question: 'What is the smallest continent?',
+        options: ['Europe', 'Australia', 'South America', 'Antarctica'],
+        answer: 'Australia',
+      ),
+      Quiz(
+        question:
+            'What line divides the Earth into Northern and Southern Hemispheres?',
+        options: [
+          'Prime Meridian',
+          'Equator',
+          'Tropic of Cancer',
+          'Arctic Circle',
+        ],
+        answer: 'Equator',
+      ),
+      Quiz(
+        question: 'Which country is known as the Land of Thousand Lakes?',
+        options: ['Sweden', 'Norway', 'Finland', 'Canada'],
+        answer: 'Finland',
+      ),
+      Quiz(
+        question: 'Which island is the largest in the world?',
+        options: ['Borneo', 'Greenland', 'Madagascar', 'Sumatra'],
+        answer: 'Greenland',
+      ),
+    ],
+  ),
+  Subject(
+    title: "History",
+    image: "assets/history_logo_secondary.png",
+    imagePrimary: "assets/history_logo_secondary.png",
+    baseColor: Colors.teal.shade700,
+    quarterColor: Colors.green.shade300,
+    quiz: [
+      Quiz(
+        question: 'Who was the first president of the United States?',
+        options: [
+          'Thomas Jefferson',
+          'Abraham Lincoln',
+          'George Washington',
+          'John Adams',
+        ],
+        answer: 'George Washington',
+      ),
+      Quiz(
+        question: 'In which year did World War II end?',
+        options: ['1944', '1945', '1946', '1947'],
+        answer: '1945',
+      ),
+      Quiz(
+        question: 'Who was known as the Iron Lady?',
+        options: [
+          'Angela Merkel',
+          'Indira Gandhi',
+          'Margaret Thatcher',
+          'Golda Meir',
+        ],
+        answer: 'Margaret Thatcher',
+      ),
+      Quiz(
+        question: 'Which empire built the Colosseum?',
+        options: ['Greek', 'Ottoman', 'Roman', 'Byzantine'],
+        answer: 'Roman',
+      ),
+      Quiz(
+        question: 'Who was the leader of Nazi Germany?',
+        options: ['Mussolini', 'Hitler', 'Churchill', 'Stalin'],
+        answer: 'Hitler',
+      ),
+      Quiz(
+        question: 'Where did the Renaissance begin?',
+        options: ['France', 'Germany', 'Italy', 'England'],
+        answer: 'Italy',
+      ),
+      Quiz(
+        question: 'Who discovered America in 1492?',
+        options: ['Magellan', 'Columbus', 'Cook', 'Vasco da Gama'],
+        answer: 'Columbus',
+      ),
+      Quiz(
+        question: 'Who was the first human to travel in space?',
+        options: [
+          'Neil Armstrong',
+          'Yuri Gagarin',
+          'Buzz Aldrin',
+          'Alan Shepard',
+        ],
+        answer: 'Yuri Gagarin',
+      ),
+      Quiz(
+        question: 'Which wall fell in 1989?',
+        options: [
+          'China Wall',
+          'Berlin Wall',
+          'Jerusalem Wall',
+          'Hadrian’s Wall',
+        ],
+        answer: 'Berlin Wall',
+      ),
+      Quiz(
+        question: 'Who wrote the Communist Manifesto?',
+        options: ['Karl Marx', 'Lenin', 'Trotsky', 'Mao Zedong'],
+        answer: 'Karl Marx',
+      ),
+    ],
+  ),
 ];
