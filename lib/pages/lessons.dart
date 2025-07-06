@@ -109,8 +109,7 @@ class _LessonsPage extends State<LessonsPage>
                 ),
               ),
             ],
-          ),
-          _buildBottomSection(media),
+          )
         ],
       ),
     );
@@ -138,58 +137,6 @@ class _LessonsPage extends State<LessonsPage>
               'Please check back later.',
               style: TextStyle(fontSize: 16, color: CustomColors.secondaryText),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBottomSection(media) {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-        width: media.width,
-        height: 0.12 * media.height,
-        decoration: BoxDecoration(
-          color: CustomColors.white,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 12,
-              offset: const Offset(0, -6), // Shadow ke atas
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  backgroundColor: CustomColors.primary,
-                  foregroundColor: CustomColors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
-                ),
-                child: Text(
-                  "Rate this course",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Color(0xFFF9F9F9),
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
           ],
         ),
       ),

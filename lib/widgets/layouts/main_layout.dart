@@ -18,7 +18,7 @@ class _MainLayoutState extends State<MainLayout> {
     HomePage(),
     MyCoursePage(),
     DiscoverPage(),
-    InboxPage()
+    InboxPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -40,14 +40,9 @@ class _MainLayoutState extends State<MainLayout> {
         padding: EdgeInsets.only(bottom: 20),
         decoration: const BoxDecoration(
           color: Color(0xFFF9F9F9),
-          border: Border(
-            top: BorderSide(
-              color: Color(0xFFE6E6E6), 
-              width: 1,
-            ),
-          ),
+          border: Border(top: BorderSide(color: Color(0xFFE6E6E6), width: 1)),
         ),
-        
+
         child: BottomNavigationBar(
           elevation: 0,
           currentIndex: _selectedIndex,
@@ -59,19 +54,39 @@ class _MainLayoutState extends State<MainLayout> {
           iconSize: 30,
           items: [
             BottomNavigationBarItem(
-              icon: _getIcon(0, Icons.home, Icons.home_outlined),
+              icon: Tooltip(
+                message: 'Home',
+                preferBelow: false,
+                child: _getIcon(0, Icons.home, Icons.home_outlined),
+              ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: _getIcon(1, Icons.book, Icons.book_outlined),
+              icon: Tooltip(
+                message: 'My Course',
+                preferBelow: false,
+                child: _getIcon(1, Icons.book, Icons.book_outlined),
+              ),
               label: 'My Course',
             ),
             BottomNavigationBarItem(
-              icon: _getIcon(2, Icons.browse_gallery, Icons.browse_gallery_outlined),
+              icon: Tooltip(
+                message: 'Discover',
+                preferBelow: false,
+                child: _getIcon(
+                  2,
+                  Icons.browse_gallery,
+                  Icons.browse_gallery_outlined,
+                ),
+              ),
               label: 'Discover',
             ),
             BottomNavigationBarItem(
-              icon: _getIcon(3, Icons.chat, Icons.chat_outlined),
+              icon: Tooltip(
+                message: 'Inbox',
+                preferBelow: false,
+                child: _getIcon(3, Icons.chat, Icons.chat_outlined),
+              ),
               label: 'Inbox',
             ),
           ],
