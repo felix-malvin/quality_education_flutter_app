@@ -3,7 +3,7 @@ import 'package:quality_education_app/widgets/appbar/custom_appbar.dart';
 import 'package:quality_education_app/commons/color.dart';
 import 'package:quality_education_app/data/enrolled_course_data.dart';
 import 'package:quality_education_app/pages/receipt.dart';
-/* import 'package:quality_education_app/pages/rating.dart'; */
+import 'package:quality_education_app/pages/rating.dart';
 import 'package:intl/intl.dart';
 
 class ActivityPage extends StatelessWidget {
@@ -114,12 +114,15 @@ class ActivityPage extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  /* Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => RatingPage(course: course.enrolledCourse),
-                        ),
-                      ); */
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) => RatingPage(
+                                            course: course.enrolledCourse,
+                                          ),
+                                    ),
+                                  );
                                 },
                                 style: TextButton.styleFrom(
                                   foregroundColor: CustomColors.primary,
