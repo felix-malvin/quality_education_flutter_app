@@ -116,9 +116,9 @@ class GetStartedPage extends StatelessWidget {
                                   backgroundColor: const Color(0xFF0066FF),
                                   foregroundColor: Colors.white,
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(30),
                                   ),
-                                  padding: const EdgeInsets.symmetric(vertical: 12), // lebih kecil
+                                  padding: const EdgeInsets.symmetric(vertical: 8), // lebih kecil
                                 ),
                                 child: const Text(
                                   "Get Started",

@@ -72,7 +72,7 @@ class _QuizPageState extends State<QuizPage> {
                       icon: Icon(Icons.check_circle_outline),
                       label: Text('Finish'),
                       style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: 14),
+                        padding: EdgeInsets.symmetric(vertical: 10),
                         backgroundColor: Colors.blueAccent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
@@ -164,7 +164,7 @@ class _QuizPageState extends State<QuizPage> {
                             ? () => setState(() => currentQuestionIndex--)
                             : null,
                     style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -191,7 +191,7 @@ class _QuizPageState extends State<QuizPage> {
                             : _submitQuiz,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xff0066FF),
-                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

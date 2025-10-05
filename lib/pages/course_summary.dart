@@ -481,7 +481,6 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
                                   CongratulationsPage(course: enrolledCourse),
                         ),
                       );
-                      print(enrolledCourses);
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: Color(0xFF0066FF),
@@ -491,7 +490,7 @@ class _CourseSummaryPage extends State<CourseSummaryPage> {
                       ),
                       padding: EdgeInsets.symmetric(
                         horizontal: 35,
-                        vertical: 15,
+                        vertical: 8,
                       ),
                     ),
                     child: Text(

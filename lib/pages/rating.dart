@@ -44,7 +44,6 @@ class _RatingPage extends State<RatingPage>
   void _handleRatingTap(int index) {
     setState(() {
       _rating = index;
-      // Reset all checkboxes when rating changes
       _complaints.forEach((item) {
         _selectedComplaints[item] = false;
       });

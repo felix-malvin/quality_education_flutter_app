@@ -86,19 +86,24 @@ class _SigninPage extends State<SigninPage> {
               children: [
                 Row(
                   children: [
-                    Checkbox(
-                      value: _isChecked,
-                      onChanged: (bool? newValue) {
-                        setState(() {
-                          _isChecked = newValue!;
-                        });
-                      },
-                      activeColor: Color(0xFF0066FF),
-                      checkColor: CustomColors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
+                    SizedBox(
+                      height: 24,
+                      width: 24,
+                      child: Checkbox(
+                        value: _isChecked,
+                        onChanged: (bool? newValue) {
+                          setState(() {
+                            _isChecked = newValue!;
+                          });
+                        },
+                        activeColor: Color(0xFF0066FF),
+                        checkColor: CustomColors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
                       ),
                     ),
+                    SizedBox(width: 8),
                     Text(
                       "Remember me",
                       style: TextStyle(
@@ -229,7 +234,7 @@ class _SigninPage extends State<SigninPage> {
           backgroundColor: Color(0xFF0066FF),
           foregroundColor: CustomColors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         ),
         child: Text(
           "Login",
@@ -257,7 +262,7 @@ class _SigninPage extends State<SigninPage> {
           backgroundColor: Color(0xFFF0F1F5),
           foregroundColor: Color(0xFF0066FF),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         ),
         child: Text(
           "Create an account",
@@ -304,7 +309,7 @@ class _SigninPage extends State<SigninPage> {
         style: OutlinedButton.styleFrom(
           side: BorderSide(color: Color(0xFF0066FF), width: 1),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          padding: EdgeInsets.only(top: 14, bottom: 14),
+          padding: EdgeInsets.symmetric(vertical: 10),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -367,7 +372,7 @@ class _SigninPage extends State<SigninPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+                    padding: EdgeInsets.symmetric(horizontal: 35, vertical: 8),
                   ),
                   child: Text(
                     "Close",

@@ -250,7 +250,7 @@ class _ReceiptPage extends State<ReceiptPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+                  padding: EdgeInsets.symmetric(horizontal: 35, vertical: 10),
                 ),
                 child: Text(
                   "Download E-Receipt",

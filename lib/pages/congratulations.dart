@@ -108,7 +108,7 @@ class _CongratulationsPage extends State<CongratulationsPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+                  padding: EdgeInsets.symmetric(horizontal: 35, vertical: 10),
                 ),
                 child: Text(
                   "View E-Receipt",
@@ -136,7 +136,7 @@ class _CongratulationsPage extends State<CongratulationsPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+                  padding: EdgeInsets.symmetric(horizontal: 35, vertical: 10),
                 ),
                 child: Text(
                   "Back to home",
@@ -148,7 +148,6 @@ class _CongratulationsPage extends State<CongratulationsPage> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
           ],
         ),
       ),

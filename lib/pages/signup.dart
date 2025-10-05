@@ -179,7 +179,7 @@ class _SignupPage extends State<SignupPage> {
           backgroundColor: Color(0xFF0066FF),
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         ),
         child: Text(
           "Register",
@@ -207,7 +207,7 @@ class _SignupPage extends State<SignupPage> {
           backgroundColor: Color(0xFFF0F1F5),
           foregroundColor: Color(0xFF0066FF),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         ),
         child: Text(
           "Already have an account",
@@ -254,7 +254,7 @@ class _SignupPage extends State<SignupPage> {
         style: OutlinedButton.styleFrom(
           side: BorderSide(color: Color(0xFF0066FF), width: 1),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          padding: EdgeInsets.only(top: 14, bottom: 14),
+          padding: EdgeInsets.symmetric(vertical: 10),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

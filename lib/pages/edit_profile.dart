@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar.dart';
 import 'package:quality_education_app/commons/color.dart';
-import 'package:quality_education_app/data/profile_data.dart';
+import 'package:quality_education_app/db/db_helper.dart';
 import 'package:flutter/services.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -13,6 +13,7 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   final _formKey = GlobalKey<FormState>();
+  final dbHelper = DBHelper();
 
   String? _gender;
   DateTime? _birthDate;
@@ -55,32 +56,45 @@ class _EditProfilePageState extends State<EditProfilePage> {
     super.dispose();
   }
 
-  void _saveChanges() {
-    if (_formKey.currentState!.validate()) {
-      profileData['name'] = _nameController.text;
-      profileData['username'] = _usernameController.text;
-      profileData['phone'] = _phoneController.text;
-      profileData['email'] = _emailController.text;
-      profileData['gender'] = _gender;
-      profileData['birthDate'] = _birthDate?.toIso8601String();
-
-      showSaveChangesSnackbar(context);
-
-      // Pop keluar dan beri sinyal ke halaman sebelumnya agar refresh
-      Navigator.pop(context, true);
-    }
-  }
-
   @override
   void initState() {
     super.initState();
+    _loadProfile();
+  }
 
-    _nameController.text = profileData['name'] ?? '';
-    _usernameController.text = profileData['username'] ?? '';
-    _phoneController.text = profileData['phone'] ?? '';
-    _emailController.text = profileData['email'] ?? '';
-    _gender = profileData['gender'];
-    _birthDate = DateTime.tryParse(profileData['birthDate'] ?? '');
+  Future<void> _loadProfile() async {
+    final profile = await dbHelper.getProfile();
+    if (profile != null) {
+      setState(() {
+        _nameController.text = profile['name'] ?? '';
+        _usernameController.text = profile['username'] ?? '';
+        _phoneController.text = profile['phone'] ?? '';
+        _emailController.text = profile['email'] ?? '';
+        _gender = profile['gender'];
+        _birthDate =
+            profile['birthDate'] != null
+                ? DateTime.tryParse(profile['birthDate'])
+                : null;
+      });
+    }
+  }
+
+  void _saveChanges() async {
+    if (_formKey.currentState!.validate()) {
+      final profileMap = {
+        'name': _nameController.text,
+        'username': _usernameController.text,
+        'phone': _phoneController.text,
+        'email': _emailController.text,
+        'gender': _gender,
+        'birthDate': _birthDate?.toIso8601String(),
+      };
+
+      await dbHelper.saveProfile(profileMap);
+
+      showSaveChangesSnackbar(context);
+      Navigator.pop(context, true);
+    }
   }
 
   @override
@@ -385,7 +399,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+                  padding: EdgeInsets.symmetric(horizontal: 35, vertical: 10),
                 ),
                 child: Text(
                   "Save Changes",

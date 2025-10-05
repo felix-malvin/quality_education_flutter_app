@@ -891,7 +891,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                     ),
                     SizedBox(height: 1),
                     Text(
-                      func(widget.course.price),
+                      func(widget.course.price.toInt()),
                       style: TextStyle(
                         fontSize: 18,
                         color: Color(0xFF0066FF),
@@ -924,7 +924,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                       ),
                       padding: EdgeInsets.symmetric(
                         horizontal: 35,
-                        vertical: 15,
+                        vertical: 8,
                       ),
                     ),
                     child: Text(

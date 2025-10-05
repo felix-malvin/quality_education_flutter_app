@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quality_education_app/widgets/appbar/custom_appbar.dart';
 import 'package:quality_education_app/commons/color.dart';
-import 'package:quality_education_app/data/profile_data.dart';
 import 'package:quality_education_app/pages/edit_profile.dart';
 import 'package:quality_education_app/pages/activity.dart';
+import 'package:quality_education_app/db/db_helper.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -13,6 +13,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePage extends State<ProfilePage> {
+  final dbHelper = DBHelper();
+
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -89,60 +91,70 @@ class _ProfilePage extends State<ProfilePage> {
                 backgroundImage: AssetImage('assets/avatar_logo.jpg'),
               ),
               SizedBox(width: 20),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    profileData['name'],
-                    style: TextStyle(
-                      color: CustomColors.primaryText,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 20,
-                    ),
-                  ),
-                  Text(
-                    '@${profileData["username"]}',
-                    style: TextStyle(
-                      color: CustomColors.secondaryText,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                    ),
-                  ),
+              FutureBuilder<Map<String, dynamic>?>(
+                future: dbHelper.getProfile(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return CircularProgressIndicator();
+                  }
 
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 4,
-                      ),
-                      backgroundColor: CustomColors.primary,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EditProfilePage(),
+                  final profile = snapshot.data!;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        profile['name'],
+                        style: TextStyle(
+                          color: CustomColors.primaryText,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 20,
                         ),
-                      ).then((hasUpdated) {
-                        if (hasUpdated == true) {
-                          setState(() {});
-                        }
-                      });
-                    },
-                    child: const Text(
-                      'Edit Profile',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 16,
-                        color: Colors.white,
                       ),
-                    ),
-                  ),
-                ],
+                      Text(
+                        '@${profile["username"]}',
+                        style: TextStyle(
+                          color: CustomColors.secondaryText,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
+                        ),
+                      ),
+
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 2,
+                          ),
+                          backgroundColor: CustomColors.primary,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EditProfilePage(),
+                            ),
+                          ).then((hasUpdated) {
+                            if (hasUpdated == true) {
+                              setState(() {});
+                            }
+                          });
+                        },
+                        child: const Text(
+                          'Edit Profile',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
             ],
           ),
@@ -270,7 +282,7 @@ class _ProfilePage extends State<ProfilePage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+                padding: EdgeInsets.symmetric(horizontal: 35, vertical: 8),
               ),
               child: Text(
                 "Sign Out",
@@ -282,6 +294,7 @@ class _ProfilePage extends State<ProfilePage> {
               ),
             ),
           ),
+          SizedBox(height: 25),
         ],
       ),
     );
